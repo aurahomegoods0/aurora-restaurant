@@ -3,10 +3,15 @@
 import React from 'react';
 import Link from 'next/link';
 import { Clock, Mail, MapPin, Phone } from 'lucide-react';
+import dynamic from 'next/dynamic';
 import { restaurantConfig } from '../../../restaurant.config';
 import { useLanguage } from '@/context/LanguageContext';
 import { clearCookieConsent } from '@/lib/cookie-consent';
-import ContactMap from './ContactMap';
+
+const ContactMap = dynamic(() => import('./ContactMap'), {
+  ssr: false,
+  loading: () => <div className="h-full min-h-[240px] bg-[#121212]" />,
+});
 
 const Footer: React.FC = () => {
   const { t } = useLanguage();

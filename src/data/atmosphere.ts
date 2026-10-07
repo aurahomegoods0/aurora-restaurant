@@ -3,7 +3,7 @@ import type { Language } from '@/context/LanguageContext';
 export type Localized = Record<Language, string>;
 
 export const chefPortrait =
-  'https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=1200&q=80';
+  'https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=800&q=70';
 
 export const chefName = 'Kamran Alimov';
 
@@ -15,7 +15,7 @@ export const galleryImages: {
 }[] = [
   {
     id: 'hall',
-    src: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80',
+    src: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=70',
     span: 'wide',
     alt: {
       uz: 'AURORA asosiy zali — qorong‘u yog‘och va oltin chiroqlar',
@@ -25,7 +25,7 @@ export const galleryImages: {
   },
   {
     id: 'table',
-    src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80',
+    src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=70',
     span: 'normal',
     alt: {
       uz: 'Imzo taom dasturxonda, sham chiroq ostida',
@@ -35,7 +35,7 @@ export const galleryImages: {
   },
   {
     id: 'lounge',
-    src: 'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=1200&q=80',
+    src: 'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=800&q=70',
     span: 'tall',
     alt: {
       uz: 'VIP lounge — past yorug‘lik va velvet kreslolar',
@@ -45,7 +45,7 @@ export const galleryImages: {
   },
   {
     id: 'bar',
-    src: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80',
+    src: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=70',
     span: 'normal',
     alt: {
       uz: 'Bar zonasi va qadahlar qatori',
@@ -55,7 +55,7 @@ export const galleryImages: {
   },
   {
     id: 'window',
-    src: 'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=1400&q=80',
+    src: 'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=800&q=70',
     span: 'normal',
     alt: {
       uz: 'Oyna yonidagi stol — kechki Toshkent manzarasi',
@@ -65,7 +65,7 @@ export const galleryImages: {
   },
   {
     id: 'private',
-    src: 'https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?auto=format&fit=crop&w=1400&q=80',
+    src: 'https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?auto=format&fit=crop&w=800&q=70',
     span: 'wide',
     alt: {
       uz: 'Yopiq xona — oilaviy kechki ovqat uchun',

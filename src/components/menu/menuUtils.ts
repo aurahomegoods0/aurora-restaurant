@@ -40,11 +40,25 @@ export function getMenuItemIngredients(
   return item[`ingredients_${language}`] ?? [];
 }
 
+export function getOptimizedImageUrl(
+  imageUrl: string,
+  width = 800,
+  quality = 70,
+): string {
+  if (!imageUrl.includes('images.unsplash.com')) return imageUrl;
+
+  let next = imageUrl;
+  if (/[?&]w=/.test(next)) next = next.replace(/w=\d+/i, `w=${width}`);
+  else next += `${next.includes('?') ? '&' : '?'}w=${width}`;
+
+  if (/[?&]q=/.test(next)) next = next.replace(/q=\d+/i, `q=${quality}`);
+  else next += `&q=${quality}`;
+
+  return next;
+}
+
 export function getHighResImageUrl(imageUrl: string): string {
-  if (imageUrl.includes('images.unsplash.com')) {
-    return imageUrl.replace(/w=\d+/i, 'w=1600').replace(/q=\d+/i, 'q=85');
-  }
-  return imageUrl;
+  return getOptimizedImageUrl(imageUrl, 1200, 75);
 }
 
 export function menuItemMatchesSearch(

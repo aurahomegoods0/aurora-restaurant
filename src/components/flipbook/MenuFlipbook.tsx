@@ -1,5 +1,6 @@
 'use client';
 
+import './materials.css';
 import { useLanguage } from '@/context/LanguageContext';
 import { FlipBook } from './FlipBook';
 import { STAGE_H } from './bookModel';

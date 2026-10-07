@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { restaurantConfig } from '../../../restaurant.config';
-import { supabase } from '@/lib/supabase/client';
 import {
   RESERVATION_TIME_SLOTS,
   getCurrentMinutes,
@@ -39,16 +38,24 @@ export const useLiveStatus = (): LiveStatus => {
 
   useEffect(() => {
     let cancelled = false;
+    const isOpen = isOpenNow();
+    const nextSlot = getNextSlot();
+    setStatus({ isOpen, nextSlot, availableTables: null });
+
+    if (window.matchMedia('(max-width: 1023px)').matches) {
+      return;
+    }
 
     async function load() {
-      const nextSlot = getNextSlot();
-      const isOpen = isOpenNow();
+      const slot = getNextSlot();
+      const open = isOpenNow();
 
-      if (!nextSlot) {
-        if (!cancelled) setStatus({ isOpen, nextSlot, availableTables: null });
+      if (!slot) {
+        if (!cancelled) setStatus({ isOpen: open, nextSlot: slot, availableTables: null });
         return;
       }
 
+      const { supabase } = await import('@/lib/supabase/client');
       const [tablesResult, bookedResult] = await Promise.all([
         supabase
           .from('tables')
@@ -58,7 +65,7 @@ export const useLiveStatus = (): LiveStatus => {
           .from('reservations')
           .select('table_id')
           .eq('reservation_date', getTodayISO())
-          .eq('reservation_time', `${nextSlot}:00`)
+          .eq('reservation_time', `${slot}:00`)
           .neq('status', 'cancelled'),
       ]);
 
@@ -72,8 +79,8 @@ export const useLiveStatus = (): LiveStatus => {
       ).size;
 
       setStatus({
-        isOpen,
-        nextSlot,
+        isOpen: open,
+        nextSlot: slot,
         availableTables:
           tablesResult.error || bookedResult.error
             ? null

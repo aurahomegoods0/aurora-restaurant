@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { CheckCircle2, Download, Loader2 } from 'lucide-react';
-import { downloadReservationVoucher } from '@/lib/pdf/generateVoucher';
 import {
   ZONE_LABELS,
   formatReservationDate,
@@ -30,6 +29,9 @@ const ReservationVoucher: React.FC<ReservationVoucherProps> = ({
     setError(null);
 
     try {
+      const { downloadReservationVoucher } = await import(
+        '@/lib/pdf/generateVoucher'
+      );
       await downloadReservationVoucher(reservation);
     } catch (downloadError) {
       console.error('[ReservationVoucher] PDF generation failed', downloadError);

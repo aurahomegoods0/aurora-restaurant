@@ -12,9 +12,8 @@ import {
 } from 'framer-motion';
 import { Sparkles } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
-import { supabase } from '@/lib/supabase/client';
 import type { MenuItem } from '@/types/menu';
-import { getHighResImageUrl, getMenuItemName } from '../menu/menuUtils';
+import { getOptimizedImageUrl, getMenuItemName } from '../menu/menuUtils';
 
 const ROTATE_EVERY_MS = 6000;
 const MAX_DISHES = 4;
@@ -60,6 +59,7 @@ const SignatureDish: React.FC<SignatureDishProps> = ({ onOpenMenu }) => {
     let cancelled = false;
 
     async function load() {
+      const { supabase } = await import('@/lib/supabase/client');
       const { data } = await supabase
         .from('menu_items')
         .select('id, name_uz, name_en, name_ru, price, image_url, category')
@@ -115,10 +115,10 @@ const SignatureDish: React.FC<SignatureDishProps> = ({ onOpenMenu }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40, rotate: -4 }}
-      animate={{ opacity: 1, y: 0, rotate: 0 }}
-      transition={{ delay: 1.6, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-      className="relative hidden lg:block"
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className="relative"
       style={{ perspective: 1200 }}
     >
       {/* Orbit ring behind the card */}
@@ -156,11 +156,11 @@ const SignatureDish: React.FC<SignatureDishProps> = ({ onOpenMenu }) => {
               className="absolute inset-0"
             >
               <Image
-                src={getHighResImageUrl(dish.image_url)}
+                src={getOptimizedImageUrl(dish.image_url, 900, 70)}
                 alt={getMenuItemName(dish as MenuItem, language)}
                 fill
                 sizes="340px"
-                priority
+                quality={70}
                 className="object-cover transition-transform duration-[6000ms] ease-out group-hover:scale-110"
               />
             </motion.div>

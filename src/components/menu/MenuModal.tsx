@@ -66,8 +66,8 @@ const MenuModal: React.FC<MenuModalProps> = ({ item, onClose }) => {
                       src={getHighResImageUrl(item.image_url)}
                       alt={getMenuItemName(item, language)}
                       fill
-                      priority
                       sizes="(max-width: 1024px) 100vw, 480px"
+                      quality={75}
                       className="object-cover"
                     />
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/60 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-[#0A0A0A]/40" />

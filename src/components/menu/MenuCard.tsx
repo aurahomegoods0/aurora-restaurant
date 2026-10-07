@@ -5,7 +5,11 @@ import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
 import type { MenuItem } from '@/types/menu';
 import { badgeStyles, filterBadgeTags } from './menuBadges';
-import { getMenuItemDescription, getMenuItemName } from './menuUtils';
+import {
+  getMenuItemDescription,
+  getMenuItemName,
+  getOptimizedImageUrl,
+} from './menuUtils';
 
 interface MenuCardProps {
   item: MenuItem;
@@ -30,16 +34,18 @@ const MenuCard: React.FC<MenuCardProps> = ({ item, onSelect }) => {
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-[#121212]">
         <Image
-          src={imageError ? fallbackImage : item.image_url}
+          src={
+            imageError
+              ? fallbackImage
+              : getOptimizedImageUrl(item.image_url, 800, 70)
+          }
           alt=""
           aria-hidden
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          quality={65}
           className="object-cover transition-transform duration-500 group-hover:scale-105"
-          onError={() => {
-            console.warn(`Image error for dish: ${name} (${item.image_url})`);
-            setImageError(true);
-          }}
+          onError={() => setImageError(true)}
         />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent opacity-80" />
       </div>

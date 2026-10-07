@@ -49,6 +49,7 @@ const AboutSection: React.FC = () => {
               alt={chefName}
               fill
               sizes="(max-width: 1024px) 100vw, 480px"
+              quality={70}
               className="object-cover object-top"
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-transparent" />
@@ -139,6 +140,7 @@ const AboutSection: React.FC = () => {
                   alt={item.alt[language]}
                   fill
                   sizes="(max-width: 640px) 50vw, 25vw"
+                  quality={65}
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <span className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/20" />

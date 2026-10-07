@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useCallback, useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2 } from 'lucide-react';
@@ -18,7 +19,18 @@ import type {
   RestaurantTable,
 } from '@/types/reservation';
 import FloorMap from './FloorMap';
-import ReservationVoucher from './ReservationVoucher';
+
+const ReservationVoucher = dynamic(() => import('./ReservationVoucher'), {
+  ssr: false,
+  loading: () => (
+    <div
+      className="flex min-h-[40vh] items-center justify-center text-sm text-white/50"
+      aria-busy="true"
+    >
+      …
+    </div>
+  ),
+});
 
 interface Confirmation {
   message: string;
