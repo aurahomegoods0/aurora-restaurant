@@ -1,6 +1,7 @@
 {
   "nav": {
     "menu": "Menyu",
+    "book": "Kitob",
     "about": "Biz haqimizda",
     "reservation": "Bron qilish",
     "contact": "Aloqa",
@@ -12,7 +13,19 @@
     "titleAccent": "BEMISL TA'RIFINI HIS QILING",
     "reserveTable": "Stol Bron Qilish",
     "exploreMenu": "Menyuni Ko'rish",
-    "scrollDown": "Pastga Surish"
+    "scrollDown": "Pastga Surish",
+    "intro": "Shimoliy shafaq ta'mi",
+    "description": "Toshkent markazida, qorong'ulikdan tug'ilgan yorug'lik. Mavsumiy mahsulotlar, shef tanlovi va har bir kechaga alohida yondashuv.",
+    "sideText": "TOSHKENT · FINE DINING · 2026",
+    "openNow": "Hozir ochiq",
+    "closedNow": "Hozir yopiq",
+    "availableTables": "Bo'sh stollar",
+    "nextSlot": "Yaqin vaqt",
+    "tablesLoading": "Tekshirilmoqda…",
+    "chefsPick": "Shef tanlovi",
+    "viewDish": "Menyuda ko'rish",
+    "localTime": "Toshkent vaqti",
+    "marquee": "Halal oshxona · Mavsumiy mahsulotlar · Dry-aged steyklar · Shef tanlovi · Jonli bron · Oyna yonidagi stollar · VIP zal"
   },
   "menu": {
     "eyebrow": "Oshxona To'plami",
@@ -37,5 +50,55 @@
       "ingredients": "Ingredientlar",
       "dietaryTags": "Dieta"
     }
+  },
+  "flipbook": {
+    "eyebrow": "Kolleksiya",
+    "title": "AURORA ta’mlar kitobi",
+    "subtitle": "Sahifalarni varaqlang: har bir varaqda bitta imzo taom. Burchakni torting, suring yoki strelka tugmalaridan foydalaning.",
+    "cover": {
+      "eyebrow": "Toshkent",
+      "title": "AURORA",
+      "subtitle": "Hashamatli restoran",
+      "tagline": "Imzo taomlar menyusi"
+    },
+    "intro": {
+      "title": "Mundarija",
+      "lead": "Olov, qaymoq va oltin bo‘ylab sayohat.",
+      "dishes": "taom",
+      "page": "b."
+    },
+    "dish": {
+      "ingredients": "Tarkibi",
+      "pairing": "Vino juftligi",
+      "order": "Buyurtma / Stol band qilish",
+      "number": "№"
+    },
+    "chef": {
+      "title": "Oshpaz izohi",
+      "body": "Har bir taom oshxonadan faqat bir marta chiqadi. Allergiyangiz haqida ofitsiantga ayting, biz sizga alohida taom tayyorlaymiz.",
+      "sign": "AURORA oshxonasi"
+    },
+    "backInner": {
+      "title": "Oqshomingizni band qiling",
+      "body": "Stollar soni cheklangan, dam olish kunlari tez band bo‘ladi.",
+      "cta": "Stol band qilish"
+    },
+    "backCover": {
+      "tagline": "Aurora ta’mini his eting"
+    },
+    "controls": {
+      "next": "Keyingi sahifa",
+      "prev": "Oldingi sahifa",
+      "pageOf": "{total} sahifadan {current}-sahifa",
+      "cover": "Muqova",
+      "pagesOf": "{total} sahifadan {left}–{right}",
+      "jump": "Sahifaga o‘tish",
+      "sound": "Ovoz yoqilgan",
+      "mute": "Ovoz o‘chirilgan",
+      "hint": "Sahifani varaqlash uchun burchakni torting"
+    },
+    "loading": "Menyu ochilmoqda",
+    "empty": "Menyu tayyorlanmoqda.",
+    "error": "Menyuni ochib bo‘lmadi."
   }
 }

@@ -14,3 +14,107 @@ body {
   background-color: #0a0a0a;
   color: #ffffff;
 }
+
+/* Film-grain texture for the hero (SVG noise, tiled) */
+.hero-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Flipbook menu: leather, paper and gold-foil materials               */
+/* ------------------------------------------------------------------ */
+
+/* Royal blue pebbled leather. The lit-noise layer is blended into the colours below it. */
+.leather {
+  background-color: #0f1d4d;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='l' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.06' numOctaves='4' seed='7' result='n'/%3E%3CfeDiffuseLighting in='n' lighting-color='%23ffffff' surfaceScale='2.4'%3E%3CfeDistantLight azimuth='235' elevation='60'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23l)'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 28% 16%, rgba(120, 150, 255, 0.28), transparent 55%),
+    radial-gradient(ellipse at 82% 92%, rgba(0, 0, 0, 0.5), transparent 60%),
+    linear-gradient(145deg, #1b3580 0%, #0d1c4a 55%, #070f2c 100%);
+  background-blend-mode: overlay, normal, normal, normal;
+}
+
+/* Ivory linen paper with a faint fibre grain and a warm vignette. */
+.paper {
+  background-color: #f3ead4;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.36 0 0 0 0 0.28 0 0 0 0 0.14 0 0 0 1.5 -0.7'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E"),
+    repeating-linear-gradient(0deg, rgba(110, 90, 50, 0.05) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(110, 90, 50, 0.05) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse at 50% 38%, #fcf7e8 0%, #f3e9cf 68%, #e6d8b6 100%);
+}
+
+/* Metallic gold: use on text (with .gold-foil) or as a frame (.gold-frame). */
+.gold-foil {
+  background-image: linear-gradient(
+    115deg,
+    #7a5a14 0%,
+    #d4af37 16%,
+    #fff3b8 30%,
+    #d4af37 44%,
+    #8c6d1f 58%,
+    #f3e4a8 76%,
+    #b8923a 100%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gold-foil-animated {
+  animation: foil-shine 7s linear infinite;
+}
+
+/* Opacity-only pulse: stays on the compositor, unlike animating filter. */
+.glow-pulse {
+  animation: glow-pulse 4.5s ease-in-out infinite;
+}
+
+.gold-frame {
+  border: 2px solid transparent;
+  border-image: linear-gradient(
+      135deg,
+      #7a5a14,
+      #f3e4a8 22%,
+      #b8923a 45%,
+      #fff3b8 62%,
+      #7a5a14
+    )
+    1;
+}
+
+@keyframes foil-shine {
+  from {
+    background-position: 0% 0;
+  }
+  to {
+    background-position: 220% 0;
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gold-foil-animated,
+  .glow-pulse {
+    animation: none;
+  }
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

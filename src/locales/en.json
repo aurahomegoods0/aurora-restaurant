@@ -1,6 +1,7 @@
 {
   "nav": {
     "menu": "Menu",
+    "book": "Book",
     "about": "About",
     "reservation": "Reservation",
     "contact": "Contact",
@@ -12,7 +13,19 @@
     "titleAccent": "EXTRAORDINARY",
     "reserveTable": "Reserve a Table",
     "exploreMenu": "Explore Menu",
-    "scrollDown": "Scroll Down"
+    "scrollDown": "Scroll Down",
+    "intro": "A taste of the northern lights",
+    "description": "In the heart of Tashkent, light born from darkness. Seasonal produce, the chef's selection and a singular approach to every evening.",
+    "sideText": "TASHKENT · FINE DINING · 2026",
+    "openNow": "Open now",
+    "closedNow": "Closed now",
+    "availableTables": "Tables available",
+    "nextSlot": "Next seating",
+    "tablesLoading": "Checking…",
+    "chefsPick": "Chef's pick",
+    "viewDish": "View in menu",
+    "localTime": "Tashkent time",
+    "marquee": "Halal kitchen · Seasonal produce · Dry-aged steaks · Chef's selection · Live booking · Window seats · VIP room"
   },
   "menu": {
     "eyebrow": "Culinary Collection",
@@ -37,5 +50,55 @@
       "ingredients": "Ingredients",
       "dietaryTags": "Dietary"
     }
+  },
+  "flipbook": {
+    "eyebrow": "The Collection",
+    "title": "The AURORA Book of Flavours",
+    "subtitle": "Turn the pages: one signature dish per leaf. Drag a corner, swipe, or use the arrow keys.",
+    "cover": {
+      "eyebrow": "Est. Tashkent",
+      "title": "AURORA",
+      "subtitle": "Luxury Restaurant",
+      "tagline": "Menu of Signature Dishes"
+    },
+    "intro": {
+      "title": "Contents",
+      "lead": "A journey through fire, cream and gold.",
+      "dishes": "dishes",
+      "page": "p."
+    },
+    "dish": {
+      "ingredients": "Ingredients",
+      "pairing": "Wine pairing",
+      "order": "Order / Book Table",
+      "number": "No."
+    },
+    "chef": {
+      "title": "Chef's Note",
+      "body": "Every plate leaves the kitchen exactly once. Tell your server about allergies and we will compose something just for you.",
+      "sign": "The AURORA Kitchen"
+    },
+    "backInner": {
+      "title": "Reserve Your Evening",
+      "body": "Tables are limited and fill quickly on weekends.",
+      "cta": "Book a Table"
+    },
+    "backCover": {
+      "tagline": "Taste the Aurora"
+    },
+    "controls": {
+      "next": "Next page",
+      "prev": "Previous page",
+      "pageOf": "Page {current} of {total}",
+      "cover": "Cover",
+      "pagesOf": "Pages {left}–{right} of {total}",
+      "jump": "Jump to page",
+      "sound": "Sound on",
+      "mute": "Sound off",
+      "hint": "Drag a corner to turn the page"
+    },
+    "loading": "Opening the menu",
+    "empty": "The menu is being prepared.",
+    "error": "The menu could not be opened."
   }
 }

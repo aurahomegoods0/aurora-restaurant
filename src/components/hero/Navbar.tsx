@@ -10,6 +10,7 @@ import { useLanguage, type Language } from '../../context/LanguageContext';
 
 const NAV_LINKS = [
   { labelKey: 'nav.menu', href: '#menu' },
+  { labelKey: 'nav.book', href: '#flipbook' },
   { labelKey: 'nav.about', href: '#about' },
   { labelKey: 'nav.reservation', href: '#reservation' },
   { labelKey: 'nav.contact', href: '#contact' },
