@@ -1,0 +1,41 @@
+{
+  "nav": {
+    "menu": "Menyu",
+    "about": "Biz haqimizda",
+    "reservation": "Bron qilish",
+    "contact": "Aloqa",
+    "bookTable": "Stol bron qilish"
+  },
+  "hero": {
+    "tagline": "Misli ko'rilmagan Yuqori Darajadagi Taomlanish Tajribasi",
+    "title": "TA'MDAN",
+    "titleAccent": "BEMISL TA'RIFINI HIS QILING",
+    "reserveTable": "Stol Bron Qilish",
+    "exploreMenu": "Menyuni Ko'rish",
+    "scrollDown": "Pastga Surish"
+  },
+  "menu": {
+    "eyebrow": "Oshxona To'plami",
+    "title": "Bizning Menyu",
+    "subtitle": "Mavsumiy mahsulotlar, nozik texnika va AURORA stoli uchun yaratilgan ta'mlar.",
+    "searchPlaceholder": "Taomlarni qidirish…",
+    "categoriesLabel": "Kategoriyalar",
+    "dietary": "Dieta",
+    "loading": "Menyu yuklanmoqda",
+    "empty": "Filtrlarga mos taom topilmadi.",
+    "categories": {
+      "all": "Hammasi",
+      "starters": "Bosh taomlar",
+      "mains": "Asosiy taomlar",
+      "steaks": "Steyklar",
+      "desserts": "Shirinliklar",
+      "drinks": "Ichimliklar"
+    },
+    "modal": {
+      "close": "Taom tafsilotlarini yopish",
+      "openDish": "{name} tafsilotlarini ko'rish",
+      "ingredients": "Ingredientlar",
+      "dietaryTags": "Dieta"
+    }
+  }
+}

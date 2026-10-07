@@ -1,0 +1,41 @@
+{
+  "nav": {
+    "menu": "Menu",
+    "about": "About",
+    "reservation": "Reservation",
+    "contact": "Contact",
+    "bookTable": "Book a Table"
+  },
+  "hero": {
+    "tagline": "Unparalleled Fine-Dining Experience",
+    "title": "TASTE THE",
+    "titleAccent": "EXTRAORDINARY",
+    "reserveTable": "Reserve a Table",
+    "exploreMenu": "Explore Menu",
+    "scrollDown": "Scroll Down"
+  },
+  "menu": {
+    "eyebrow": "Culinary Collection",
+    "title": "Our Menu",
+    "subtitle": "Seasonal ingredients, refined technique, and bold flavors crafted for the AURORA table.",
+    "searchPlaceholder": "Search dishes…",
+    "categoriesLabel": "Categories",
+    "dietary": "Dietary",
+    "loading": "Loading menu",
+    "empty": "No dishes match your filters.",
+    "categories": {
+      "all": "All",
+      "starters": "Starters",
+      "mains": "Mains",
+      "steaks": "Steaks",
+      "desserts": "Desserts",
+      "drinks": "Drinks"
+    },
+    "modal": {
+      "close": "Close dish details",
+      "openDish": "View details for {name}",
+      "ingredients": "Ingredients",
+      "dietaryTags": "Dietary"
+    }
+  }
+}
