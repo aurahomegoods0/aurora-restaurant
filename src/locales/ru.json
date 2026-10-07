@@ -28,14 +28,20 @@
     "marquee": "Халяль кухня · Сезонные продукты · Стейки сухой выдержки · Выбор шефа · Онлайн-бронь · Столики у окна · VIP-зал"
   },
   "menu": {
-    "eyebrow": "Кулинарная Коллекция",
-    "title": "Наше Меню",
-    "subtitle": "Сезонные продукты, изящная техника и смелые вкусы, созданные для стола AURORA.",
-    "searchPlaceholder": "Поиск блюд…",
+    "eyebrow": "Дегустационный лист",
+    "title": "Вечернее меню",
+    "subtitle": "Огонь, сливки и золото — каждое блюдо как отдельный вечер.",
+    "searchPlaceholder": "Блюдо или ингредиент…",
     "categoriesLabel": "Категории",
     "dietary": "Диета",
-    "loading": "Загрузка меню",
+    "loading": "Открываем меню",
     "empty": "Нет блюд по выбранным фильтрам.",
+    "courseCount": "{count} блюд",
+    "featuredEyebrow": "Выбор шефа",
+    "featuredTonight": "Сегодня вечером",
+    "featuredCta": "Tasting note",
+    "pairing": "Винная пара",
+    "indexHint": "Номера — порядок вечера",
     "categories": {
       "all": "Все",
       "starters": "Закуски",
@@ -47,8 +53,9 @@
     "modal": {
       "close": "Закрыть описание блюда",
       "openDish": "Подробнее о блюде «{name}»",
-      "ingredients": "Ингредиенты",
-      "dietaryTags": "Диета"
+      "ingredients": "Состав",
+      "dietaryTags": "Диета",
+      "reserve": "Забронировать стол"
     }
   },
   "flipbook": {

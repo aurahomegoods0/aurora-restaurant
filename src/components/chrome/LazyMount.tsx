@@ -12,7 +12,7 @@ interface LazyMountProps {
 const LazyMount: React.FC<LazyMountProps> = ({
   children,
   fallback,
-  rootMargin = '480px',
+  rootMargin = '0px',
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState(false);

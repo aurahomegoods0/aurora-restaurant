@@ -31,27 +31,52 @@ const Navbar: React.FC = () => {
   const [isLangOpen, setIsLangOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-
-      const sections = NAV_LINKS.map((link) =>
-        document.querySelector(link.href),
-      ).filter(Boolean) as HTMLElement[];
-
-      const scrollPosition = window.scrollY + 120;
-      let current = '';
-      for (const section of sections) {
-        if (scrollPosition >= section.offsetTop) {
-          current = `#${section.id}`;
-        }
-      }
-      setActiveSection((prev) => (prev === current ? prev : current));
-    };
-
+    const onScroll = () => setIsScrolled(window.scrollY > 20);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  useEffect(() => {
+    let io: IntersectionObserver | undefined;
+    let retry: number | undefined;
+    let cancelled = false;
+
+    const connect = () => {
+      if (cancelled) return;
+      const nodes = NAV_LINKS.map((link) =>
+        document.querySelector(link.href),
+      ).filter((el): el is HTMLElement => el instanceof HTMLElement);
+
+      if (nodes.length < NAV_LINKS.length) {
+        retry = window.setTimeout(connect, 400);
+      }
+      if (nodes.length === 0) return;
+
+      io?.disconnect();
+      io = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          if (!(visible?.target instanceof HTMLElement) || !visible.target.id) {
+            return;
+          }
+          const next = `#${visible.target.id}`;
+          setActiveSection((prev) => (prev === next ? prev : next));
+        },
+        { rootMargin: '-20% 0px -60% 0px', threshold: [0, 0.25, 0.5] },
+      );
+      nodes.forEach((node) => io?.observe(node));
+    };
+
+    connect();
+    return () => {
+      cancelled = true;
+      if (retry) window.clearTimeout(retry);
+      io?.disconnect();
+    };
+  }, [pathname]);
 
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';

@@ -191,9 +191,9 @@ const Hero: React.FC = () => {
             <span className="bg-gradient-to-b from-[#F3E4A8] via-[#D4AF37] to-[#8C6D1F] bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(212,175,55,0.25)]">
               {restaurantConfig.name}
             </span>
-            {!reduceMotion ? (
+            {!reduceMotion && isLg ? (
               <span
-                className="hero-sweep pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/25 to-transparent mix-blend-overlay"
+                className="hero-sweep pointer-events-none absolute inset-y-0 left-0 hidden w-1/3 bg-gradient-to-r from-transparent via-white/25 to-transparent lg:block"
                 aria-hidden
               />
             ) : null}
@@ -243,9 +243,9 @@ const Hero: React.FC = () => {
         <div className="mx-auto flex max-w-7xl flex-wrap items-end justify-between gap-6 px-4 pb-8 pt-6 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[11px] uppercase tracking-[0.2em] text-white/55">
             <span className="relative flex h-2 w-2">
-              {live.isOpen && (
+              {live.isOpen && isLg ? (
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
-              )}
+              ) : null}
               <span
                 className={`relative inline-flex h-2 w-2 rounded-full ${
                   live.isOpen ? 'bg-emerald-400' : 'bg-white/30'
@@ -278,13 +278,9 @@ const Hero: React.FC = () => {
             aria-label={t('hero.scrollDown')}
           >
             <span>{t('hero.scrollDown')}</span>
-            <motion.span
-              animate={reduceMotion ? undefined : { y: [0, 6, 0] }}
-              transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-              className="flex"
-            >
+            <span className="hero-scroll-hint flex">
               <ArrowDown className="h-3.5 w-3.5" aria-hidden />
-            </motion.span>
+            </span>
           </button>
 
           {live.nextSlot && live.availableTables !== null && (

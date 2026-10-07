@@ -28,14 +28,20 @@
     "marquee": "Halal kitchen · Seasonal produce · Dry-aged steaks · Chef's selection · Live booking · Window seats · VIP room"
   },
   "menu": {
-    "eyebrow": "Culinary Collection",
-    "title": "Our Menu",
-    "subtitle": "Seasonal ingredients, refined technique, and bold flavors crafted for the AURORA table.",
-    "searchPlaceholder": "Search dishes…",
+    "eyebrow": "The tasting sheet",
+    "title": "Evening menu",
+    "subtitle": "Fire, cream and gold — each dish a night of its own.",
+    "searchPlaceholder": "Dish or ingredient…",
     "categoriesLabel": "Categories",
     "dietary": "Dietary",
-    "loading": "Loading menu",
-    "empty": "No dishes match your filters.",
+    "loading": "Opening the menu",
+    "empty": "Nothing matches this evening’s filters.",
+    "courseCount": "{count} dishes",
+    "featuredEyebrow": "Chef’s pick",
+    "featuredTonight": "Tonight",
+    "featuredCta": "Tasting note",
+    "pairing": "Wine pairing",
+    "indexHint": "Numbers follow the evening’s order",
     "categories": {
       "all": "All",
       "starters": "Starters",
@@ -48,7 +54,8 @@
       "close": "Close dish details",
       "openDish": "View details for {name}",
       "ingredients": "Ingredients",
-      "dietaryTags": "Dietary"
+      "dietaryTags": "Dietary",
+      "reserve": "Reserve a table"
     }
   },
   "flipbook": {

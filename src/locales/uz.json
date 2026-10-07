@@ -28,14 +28,20 @@
     "marquee": "Halal oshxona · Mavsumiy mahsulotlar · Dry-aged steyklar · Shef tanlovi · Jonli bron · Oyna yonidagi stollar · VIP zal"
   },
   "menu": {
-    "eyebrow": "Oshxona To'plami",
-    "title": "Bizning Menyu",
-    "subtitle": "Mavsumiy mahsulotlar, nozik texnika va AURORA stoli uchun yaratilgan ta'mlar.",
-    "searchPlaceholder": "Taomlarni qidirish…",
+    "eyebrow": "Degustatsiya varaqasi",
+    "title": "Kechki menyu",
+    "subtitle": "Olov, qaymoq va oltin: har taom — alohida kecha.",
+    "searchPlaceholder": "Taom yoki ingredient…",
     "categoriesLabel": "Kategoriyalar",
     "dietary": "Dieta",
-    "loading": "Menyu yuklanmoqda",
-    "empty": "Filtrlarga mos taom topilmadi.",
+    "loading": "Menyu ochilmoqda",
+    "empty": "Bu kechaga mos taom topilmadi.",
+    "courseCount": "{count} taom",
+    "featuredEyebrow": "Shef tanlovi",
+    "featuredTonight": "Bugun kechqurun",
+    "featuredCta": "Tasting note",
+    "pairing": "Vino juftligi",
+    "indexHint": "Raqam — kechki tartib",
     "categories": {
       "all": "Hammasi",
       "starters": "Bosh taomlar",
@@ -47,8 +53,9 @@
     "modal": {
       "close": "Taom tafsilotlarini yopish",
       "openDish": "{name} tafsilotlarini ko'rish",
-      "ingredients": "Ingredientlar",
-      "dietaryTags": "Dieta"
+      "ingredients": "Tarkibi",
+      "dietaryTags": "Dieta",
+      "reserve": "Stol band qilish"
     }
   },
   "flipbook": {

@@ -37,10 +37,10 @@ a,
 
 @keyframes hero-sweep {
   from {
-    transform: translateX(-40%) skewX(-12deg);
+    transform: translate3d(-40%, 0, 0);
   }
   to {
-    transform: translateX(340%) skewX(-12deg);
+    transform: translate3d(340%, 0, 0);
   }
 }
 
@@ -63,13 +63,27 @@ a,
   will-change: transform;
 }
 
+@keyframes hero-scroll-hint {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(6px);
+  }
+}
+
+.hero-scroll-hint {
+  animation: hero-scroll-hint 1.8s ease-in-out infinite alternate;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-sweep {
     animation: none;
     display: none;
   }
 
-  .hero-marquee {
+  .hero-marquee,
+  .hero-scroll-hint {
     animation: none;
   }
 }
