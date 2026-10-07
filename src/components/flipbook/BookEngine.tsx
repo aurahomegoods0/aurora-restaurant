@@ -661,7 +661,7 @@ export function BookEngine({
 
         <ThumbnailBar thumbs={book.thumbs} mode={mode} view={focus} onJump={goTo} />
 
-        <p className="mt-1 text-center text-[11px] uppercase tracking-[0.25em] text-white/35">
+        <p className="mt-3 text-center text-[10px] uppercase tracking-[0.32em] text-[#D4AF37]/45">
           {t('flipbook.controls.hint')}
         </p>
       </div>

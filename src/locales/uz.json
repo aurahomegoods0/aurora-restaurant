@@ -59,9 +59,16 @@
     }
   },
   "flipbook": {
-    "eyebrow": "Kolleksiya",
-    "title": "AURORA ta’mlar kitobi",
-    "subtitle": "Sahifalarni varaqlang: har bir varaqda bitta imzo taom. Burchakni torting, suring yoki strelka tugmalaridan foydalaning.",
+    "ghost": "KITOB",
+    "eyebrow": "Kechki kitob",
+    "title": "Ta’mlar daftari",
+    "subtitle": "Har varaqda bitta imzo taom. Burchakni torting — sahifa ochiladi.",
+    "leafCount": "{count} varaq",
+    "gestures": {
+      "corner": "Burchakni torting",
+      "swipe": "Suring",
+      "keys": "Strelkalar"
+    },
     "cover": {
       "eyebrow": "Toshkent",
       "title": "AURORA",
@@ -104,9 +111,9 @@
       "mute": "Ovoz o‘chirilgan",
       "hint": "Sahifani varaqlash uchun burchakni torting"
     },
-    "loading": "Menyu ochilmoqda",
-    "empty": "Menyu tayyorlanmoqda.",
-    "error": "Menyuni ochib bo‘lmadi."
+    "loading": "Kitob ochilmoqda",
+    "empty": "Kitob tayyorlanmoqda.",
+    "error": "Kitobni ochib bo‘lmadi."
   },
   "about": {
     "eyebrow": "To‘rtinchi qism",

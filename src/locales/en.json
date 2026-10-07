@@ -59,9 +59,16 @@
     }
   },
   "flipbook": {
-    "eyebrow": "The Collection",
-    "title": "The AURORA Book of Flavours",
-    "subtitle": "Turn the pages: one signature dish per leaf. Drag a corner, swipe, or use the arrow keys.",
+    "ghost": "BOOK",
+    "eyebrow": "The evening book",
+    "title": "Book of flavours",
+    "subtitle": "One signature dish per leaf. Pull a corner — the page turns.",
+    "leafCount": "{count} leaves",
+    "gestures": {
+      "corner": "Pull a corner",
+      "swipe": "Swipe",
+      "keys": "Arrow keys"
+    },
     "cover": {
       "eyebrow": "Est. Tashkent",
       "title": "AURORA",
@@ -104,9 +111,9 @@
       "mute": "Sound off",
       "hint": "Drag a corner to turn the page"
     },
-    "loading": "Opening the menu",
-    "empty": "The menu is being prepared.",
-    "error": "The menu could not be opened."
+    "loading": "Opening the book",
+    "empty": "The book is being prepared.",
+    "error": "The book could not be opened."
   },
   "about": {
     "eyebrow": "Part four",
