@@ -50,6 +50,7 @@ const ReservationVoucher: React.FC<ReservationVoucherProps> = ({
   return (
     <div
       role="status"
+      data-testid="reservation-voucher"
       className="mx-auto max-w-xl rounded-sm border border-[#D4AF37]/30 bg-[#121212] px-6 py-10 text-center sm:px-10"
     >
       <CheckCircle2
@@ -85,6 +86,7 @@ const ReservationVoucher: React.FC<ReservationVoucherProps> = ({
       <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
         <button
           type="button"
+          data-testid="download-voucher"
           onClick={handleDownload}
           disabled={downloading}
           className="flex w-full items-center justify-center gap-2 rounded-sm bg-[#D4AF37] px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-black transition-all duration-300 hover:bg-[#E8C96A] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"

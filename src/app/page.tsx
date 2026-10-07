@@ -1,15 +1,37 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 import Hero from '../components/hero/Hero';
 import MenuSection from '../components/menu/MenuSection';
-import MenuFlipbook from '../components/flipbook/MenuFlipbook';
+import AboutSection from '../components/about/AboutSection';
 import ReservationSection from '../components/reservation/ReservationSection';
+
+const MenuFlipbook = dynamic(
+  () => import('../components/flipbook/MenuFlipbook'),
+  {
+    loading: () => (
+      <section
+        id="flipbook"
+        className="bg-[#0A0A0A] px-4 py-24 text-center text-sm text-white/40"
+        aria-busy="true"
+      >
+        Menyuni ochish…
+      </section>
+    ),
+  },
+);
+
+const Testimonials = dynamic(
+  () => import('../components/reviews/Testimonials'),
+);
 
 const HomePage: React.FC = () => {
   return (
-    <main className="min-h-screen bg-[#0A0A0A]">
+    <main id="main-content" className="min-h-screen overflow-x-clip bg-[#0A0A0A]">
       <Hero />
       <MenuSection />
       <MenuFlipbook />
+      <AboutSection />
+      <Testimonials />
       <ReservationSection />
     </main>
   );

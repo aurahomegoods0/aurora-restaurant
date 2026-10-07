@@ -2,6 +2,7 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 import { Users } from 'lucide-react';
+import { E2E_TABLES, isE2EMock } from '@/lib/e2e';
 import { supabase } from '@/lib/supabase/client';
 import type {
   ReservationSlot,
@@ -61,6 +62,13 @@ const FloorMap: React.FC<FloorMapProps> = ({
     let cancelled = false;
 
     async function loadTables() {
+      if (isE2EMock()) {
+        setTables(E2E_TABLES);
+        setTablesLoading(false);
+        setRealtimeState('live');
+        return;
+      }
+
       const { data, error: fetchError } = await supabase
         .from('tables')
         .select('id, table_number, capacity, zone, is_active')
@@ -85,6 +93,10 @@ const FloorMap: React.FC<FloorMapProps> = ({
 
   useEffect(() => {
     setSlots({});
+    if (isE2EMock()) {
+      setRealtimeState('live');
+      return;
+    }
     if (!date) {
       setRealtimeState('connecting');
       return;
@@ -299,6 +311,7 @@ const FloorMap: React.FC<FloorMapProps> = ({
                             type="button"
                             disabled={!ready || occupied}
                             aria-pressed={selected}
+                            data-testid={`table-${table.table_number}`}
                             aria-label={`Stol ${table.table_number}, ${table.capacity} kishilik${stateLabel ? `, ${stateLabel}` : ''}`}
                             onClick={() => handleSelect(table)}
                             className={`peer relative flex flex-col items-center justify-center border-2 text-sm font-semibold transition-all duration-300 focus-visible:outline-none ${tableShape(table.capacity)} ${

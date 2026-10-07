@@ -168,7 +168,7 @@ const MenuSection: React.FC = () => {
                     role="tab"
                     aria-selected={active}
                     onClick={() => setCategory(key)}
-                    className={`rounded-sm border px-4 py-2 text-xs uppercase tracking-[0.15em] transition-all duration-300 ${
+                    className={`inline-flex min-h-11 items-center rounded-sm border px-4 text-xs uppercase tracking-[0.15em] transition-all duration-300 ${
                       active
                         ? 'border-[#D4AF37]/50 bg-[#D4AF37]/10 text-[#E8C96A] shadow-[0_0_20px_rgba(212,175,55,0.12)]'
                         : 'border-white/10 bg-transparent text-white/60 hover:border-white/20 hover:text-white/90'
@@ -192,7 +192,7 @@ const MenuSection: React.FC = () => {
                     type="button"
                     aria-pressed={active}
                     onClick={() => toggleDietary(tag)}
-                    className={`rounded-full border px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.12em] transition-all duration-300 ${
+                    className={`inline-flex min-h-11 items-center rounded-full border px-3 text-[10px] font-medium uppercase tracking-[0.12em] transition-all duration-300 ${
                       active
                         ? 'border-[#D4AF37]/50 bg-[#D4AF37]/15 text-[#E8D48B]'
                         : 'border-white/10 text-white/50 hover:border-white/25 hover:text-white/80'

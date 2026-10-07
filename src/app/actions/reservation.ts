@@ -9,6 +9,7 @@ import {
   reservationSchema,
   type ReservationInput,
 } from '@/lib/validations/reservation';
+import { E2E_TABLES, isE2EMock } from '@/lib/e2e';
 import type {
   ReservationActionResult,
   ReservationDetails,
@@ -95,6 +96,26 @@ export async function createReservation(
     );
   }
 
+  const { website: _honeypot, ...reservation } = parsed.data;
+
+  if (isE2EMock()) {
+    const table =
+      E2E_TABLES.find((item) => item.id === reservation.table_id) ??
+      E2E_TABLES[0];
+    return succeed({
+      id: crypto.randomUUID(),
+      guest_name: reservation.guest_name,
+      guest_email: reservation.guest_email,
+      guest_phone: reservation.guest_phone,
+      party_size: reservation.party_size,
+      reservation_date: reservation.reservation_date,
+      reservation_time: reservation.reservation_time,
+      table_number: table.table_number,
+      zone: table.zone,
+      status: 'pending',
+    });
+  }
+
   // Counted only after validation passes, so a legitimate user fixing typos
   // does not burn through their allowance.
   const { allowed, retryAfterSeconds } = await checkRateLimit(
@@ -107,8 +128,6 @@ export async function createReservation(
       `Juda ko'p urinish. Iltimos, ${retryAfterSeconds} soniyadan so'ng qayta urinib ko'ring.`,
     );
   }
-
-  const { website: _honeypot, ...reservation } = parsed.data;
 
   try {
     const supabase = createServerSupabaseClient();

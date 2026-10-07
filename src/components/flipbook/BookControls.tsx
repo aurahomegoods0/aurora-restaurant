@@ -90,17 +90,17 @@ export function BookToolbar({
           .replace('{total}', String(totalPages));
 
   return (
-    <div className="mt-2 flex items-center justify-center gap-4">
+    <div className="mt-2 flex items-center justify-center gap-2 sm:gap-4">
       <ArrowButton
         direction="prev"
         disabled={view <= 0}
         onClick={onPrev}
-        className="md:hidden"
+        className="shrink-0 md:hidden"
       />
 
       <p
         aria-live="polite"
-        className="min-w-[10.5rem] text-center font-serif text-sm uppercase tracking-[0.22em] text-[#e8cf7a]"
+        className="min-w-0 flex-1 truncate text-center font-serif text-sm uppercase tracking-[0.22em] text-[#e8cf7a] sm:flex-none sm:min-w-[10.5rem]"
       >
         {label}
       </p>
@@ -109,7 +109,7 @@ export function BookToolbar({
         direction="next"
         disabled={view >= maxView}
         onClick={onNext}
-        className="md:hidden"
+        className="shrink-0 md:hidden"
       />
 
       <button
@@ -118,7 +118,7 @@ export function BookToolbar({
         aria-pressed={soundOn}
         aria-label={t(soundOn ? 'flipbook.controls.sound' : 'flipbook.controls.mute')}
         title={t(soundOn ? 'flipbook.controls.sound' : 'flipbook.controls.mute')}
-        className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/60 transition-colors hover:border-[#d4af37]/60 hover:text-[#e8cf7a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37]"
+        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/15 text-white/60 transition-colors hover:border-[#d4af37]/60 hover:text-[#e8cf7a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d4af37]"
       >
         {soundOn ? (
           <Volume2 className="h-5 w-5" aria-hidden />

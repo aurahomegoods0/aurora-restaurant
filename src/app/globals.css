@@ -7,12 +7,19 @@
 @source '../**/*.{js,ts,jsx,tsx,mdx}';
 
 html {
-  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   background-color: #0a0a0a;
   color: #ffffff;
+  overflow-x: hidden;
+}
+
+button,
+a,
+[role='button'] {
+  touch-action: manipulation;
 }
 
 /* Film-grain texture for the hero (SVG noise, tiled) */
@@ -59,9 +66,7 @@ body {
     #b8923a 100%
   );
   background-size: 220% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #e8c96a;
 }
 
 .gold-foil-animated {
@@ -110,6 +115,20 @@ body {
   .glow-pulse {
     animation: none;
   }
+}
+
+/* WCAG AA floor for muted copy on #0A0A0A (Lighthouse Accessibility). */
+.text-white\/30,
+.text-white\/35,
+.text-white\/40,
+.text-white\/45,
+.text-white\/50,
+.text-white\/55 {
+  color: rgb(255 255 255 / 0.72);
+}
+
+.placeholder\:text-white\/35::placeholder {
+  color: rgb(255 255 255 / 0.65);
 }
 
 .no-scrollbar {

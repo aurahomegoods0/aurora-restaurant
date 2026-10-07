@@ -1,0 +1,19 @@
+export async function register(): Promise<void> {
+  if (!process.env.SENTRY_DSN) return;
+  if (process.env.NEXT_RUNTIME !== 'nodejs') return;
+
+  const Sentry = await import('@sentry/nextjs');
+  Sentry.init({
+    dsn: process.env.SENTRY_DSN,
+    tracesSampleRate: 0.15,
+    enabled: process.env.NODE_ENV === 'production',
+  });
+}
+
+export async function onRequestError(
+  error: unknown,
+): Promise<void> {
+  if (!process.env.SENTRY_DSN) return;
+  const Sentry = await import('@sentry/nextjs');
+  Sentry.captureException(error);
+}

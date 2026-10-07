@@ -156,7 +156,7 @@ export function DishFace({ item, number, near, interactive }: DishFaceProps) {
           type="button"
           tabIndex={interactive ? 0 : -1}
           onClick={scrollToReservation}
-          className="min-w-0 rounded-full border border-[#5b430c] bg-[linear-gradient(180deg,#f3e4a8,#d4af37_55%,#a8801e)] px-4 py-2.5 text-[11px] font-bold uppercase leading-tight tracking-[0.1em] text-[#2b1f10] shadow-[0_3px_8px_rgba(60,40,10,0.35),inset_0_1px_0_rgba(255,255,255,0.7)] transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2b1f10]"
+          className="min-h-11 min-w-0 rounded-full border border-[#5b430c] bg-[linear-gradient(180deg,#f3e4a8,#d4af37_55%,#a8801e)] px-4 text-[11px] font-bold uppercase leading-tight tracking-[0.1em] text-[#2b1f10] shadow-[0_3px_8px_rgba(60,40,10,0.35),inset_0_1px_0_rgba(255,255,255,0.7)] transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2b1f10]"
         >
           {t('flipbook.dish.order')}
         </button>

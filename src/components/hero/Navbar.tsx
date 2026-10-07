@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown, Globe, Menu, X } from 'lucide-react';
 import { clsx } from 'clsx';
@@ -22,47 +23,35 @@ const cn = (...inputs: Parameters<typeof clsx>) => twMerge(clsx(inputs));
 
 const Navbar: React.FC = () => {
   const { language, setLanguage, t } = useLanguage();
+  const pathname = usePathname();
+  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const onScroll = () => {
       setIsScrolled(window.scrollY > 20);
-    };
 
-    const handleScrollSpy = () => {
       const sections = NAV_LINKS.map((link) =>
         document.querySelector(link.href),
-      ).filter(Boolean) as Element[];
+      ).filter(Boolean) as HTMLElement[];
 
       const scrollPosition = window.scrollY + 120;
-
       let current = '';
       for (const section of sections) {
-        const sectionTop = (section as HTMLElement).offsetTop;
-        if (scrollPosition >= sectionTop) {
+        if (scrollPosition >= section.offsetTop) {
           current = `#${section.id}`;
         }
       }
-
-      if (current !== activeSection) {
-        setActiveSection(current);
-      }
+      setActiveSection((prev) => (prev === current ? prev : current));
     };
 
-    handleScroll();
-    handleScrollSpy();
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('scroll', handleScrollSpy, { passive: true });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('scroll', handleScrollSpy);
-    };
-  }, [activeSection]);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
@@ -72,27 +61,35 @@ const Navbar: React.FC = () => {
     };
   }, [isMobileMenuOpen]);
 
+  const goToHash = (href: string) => {
+    setIsMobileMenuOpen(false);
+
+    if (pathname !== '/') {
+      router.push(`/${href === '#' || href === '#hero' ? '' : href}`);
+      return;
+    }
+
+    if (href === '#' || href === '#hero') {
+      window.history.replaceState(null, '', '#hero');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    window.history.replaceState(null, '', href);
+    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string,
   ) => {
     e.preventDefault();
-    setIsMobileMenuOpen(false);
-
-    const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
+    goToHash(href);
   };
 
   const handleBookClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    setIsMobileMenuOpen(false);
-
-    const target = document.querySelector('#reservation');
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
+    goToHash('#reservation');
   };
 
   return (
@@ -105,12 +102,15 @@ const Navbar: React.FC = () => {
             : 'bg-[#0A0A0A]/40',
         )}
       >
-        <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <nav
+          aria-label="Asosiy navigatsiya"
+          className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
+        >
           {/* Brand Logo */}
           <a
-            href="#"
-            onClick={(e) => handleNavClick(e, '#')}
-            className="group flex items-center gap-2"
+            href="/#hero"
+            onClick={(e) => handleNavClick(e, '#hero')}
+            className="group flex min-h-11 items-center gap-2"
           >
             <span className="text-2xl font-bold tracking-[0.3em] text-[#D4AF37] transition-transform duration-300 group-hover:scale-105 sm:text-3xl">
               {restaurantConfig.name}
@@ -126,7 +126,7 @@ const Navbar: React.FC = () => {
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
                 className={cn(
-                  'relative text-sm font-medium uppercase tracking-widest transition-colors duration-300',
+                  'relative inline-flex min-h-11 items-center text-sm font-medium uppercase tracking-widest transition-colors duration-300',
                   activeSection === link.href
                     ? 'text-[#D4AF37]'
                     : 'text-white/70 hover:text-white',
@@ -150,7 +150,10 @@ const Navbar: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsLangOpen((prev) => !prev)}
-                className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium uppercase tracking-wider text-white/80 transition-all duration-300 hover:border-[#D4AF37]/40 hover:text-white"
+                aria-label="Til"
+                aria-haspopup="listbox"
+                aria-expanded={isLangOpen}
+                className="flex min-h-11 items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 text-xs font-medium uppercase tracking-wider text-white/80 transition-all duration-300 hover:border-[#D4AF37]/40 hover:text-white"
               >
                 <Globe className="h-3.5 w-3.5 text-[#D4AF37]" />
                 {language.toUpperCase()}
@@ -180,7 +183,7 @@ const Navbar: React.FC = () => {
                           setIsLangOpen(false);
                         }}
                         className={cn(
-                          'block w-full px-4 py-2.5 text-left text-xs font-medium uppercase tracking-wider transition-colors duration-200',
+                          'flex min-h-11 w-full items-center px-4 text-left text-xs font-medium uppercase tracking-wider transition-colors duration-200',
                           language === lang
                             ? 'bg-[#D4AF37]/10 text-[#D4AF37]'
                             : 'text-white/70 hover:bg-white/5 hover:text-white',
@@ -198,7 +201,7 @@ const Navbar: React.FC = () => {
             <a
               href="#reservation"
               onClick={handleBookClick}
-              className="hidden items-center rounded-full bg-gradient-to-r from-[#D4AF37] via-[#E8C96A] to-[#D4AF37] px-5 py-2.5 text-sm font-semibold uppercase tracking-wider text-[#0A0A0A] shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] sm:inline-flex"
+              className="hidden min-h-11 items-center rounded-full bg-gradient-to-r from-[#D4AF37] via-[#E8C96A] to-[#D4AF37] px-5 text-sm font-semibold uppercase tracking-wider text-[#0A0A0A] shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] sm:inline-flex"
             >
               {t('nav.bookTable')}
             </a>
@@ -207,8 +210,9 @@ const Navbar: React.FC = () => {
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-colors duration-300 hover:border-[#D4AF37]/40 lg:hidden"
-              aria-label="Toggle menu"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-colors duration-300 hover:border-[#D4AF37]/40 lg:hidden"
+              aria-label="Menyu"
+              aria-expanded={isMobileMenuOpen}
             >
               {isMobileMenuOpen ? (
                 <X className="h-5 w-5" />
@@ -279,7 +283,7 @@ const Navbar: React.FC = () => {
                       type="button"
                       onClick={() => setLanguage(lang)}
                       className={cn(
-                        'rounded-full border px-4 py-2 text-xs font-medium uppercase tracking-wider transition-all duration-300',
+                        'min-h-11 min-w-11 rounded-full border px-4 text-xs font-medium uppercase tracking-wider transition-all duration-300',
                         language === lang
                           ? 'border-[#D4AF37] bg-[#D4AF37]/10 text-[#D4AF37]'
                           : 'border-white/10 text-white/60 hover:border-white/30 hover:text-white',

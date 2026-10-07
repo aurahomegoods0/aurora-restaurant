@@ -1,13 +1,35 @@
 import './globals.css';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import React from 'react';
 import { restaurantConfig } from '../../restaurant.config';
 import { LanguageProvider } from '../context/LanguageContext';
+import Navbar from '../components/hero/Navbar';
+import Footer from '../components/footer';
+import ScrollProgress from '../components/ui/ScrollProgress';
+import BackToTop from '../components/ui/BackToTop';
+import CookieBanner from '../components/legal/CookieBanner';
+import HashScroll from '../components/chrome/HashScroll';
+import RestaurantJsonLd from '../components/seo/RestaurantJsonLd';
+import Observability from '../components/analytics/Observability';
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: 'cover',
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(restaurantConfig.siteUrl),
-  title: 'AURORA | Unparalleled Fine-Dining Experience',
+  title: {
+    default: 'AURORA | Fine Dining Restaurant in Tashkent',
+    template: '%s | AURORA',
+  },
   description: restaurantConfig.description,
+  alternates: {
+    canonical: restaurantConfig.siteUrl,
+  },
+  category: 'restaurant',
   keywords: [
     'AURORA',
     'restaurant',
@@ -64,9 +86,25 @@ interface RootLayoutProps {
 
 const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
-    <html lang={restaurantConfig.defaultLanguage}>
-      <body className="bg-[#0A0A0A] text-white min-h-screen antialiased">
-        <LanguageProvider>{children}</LanguageProvider>
+    <html lang={restaurantConfig.defaultLanguage} className="overflow-x-hidden">
+      <body className="min-h-screen overflow-x-hidden bg-[#0A0A0A] text-white antialiased">
+        <RestaurantJsonLd />
+        <LanguageProvider>
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[80] focus:rounded-sm focus:bg-[#D4AF37] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[#0A0A0A]"
+          >
+            Skip to content
+          </a>
+          <HashScroll />
+          <ScrollProgress />
+          <Navbar />
+          {children}
+          <Footer />
+          <BackToTop />
+          <CookieBanner />
+          <Observability />
+        </LanguageProvider>
       </body>
     </html>
   );

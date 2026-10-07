@@ -9,6 +9,11 @@ export const restaurantConfig = {
     email: 'info@aurora.uz',
     address: 'Toshkent sh., Amir Temur shoh ko\'chasi, 1',
     workingHours: 'Dushanba - Yakshanba: 10:00 - 23:00',
+    mapEmbedUrl:
+      'https://maps.google.com/maps?q=Amir%20Temur%20Avenue%201%2C%20Tashkent&hl=uz&z=16&output=embed',
+    mapDirectionsUrl:
+      'https://www.google.com/maps/dir/?api=1&destination=Amir+Temur+Avenue+1,+Tashkent',
+    geo: { lat: 41.311151, lng: 69.279737 },
   },
   openingHours: { open: '10:00', close: '23:00' },
   /** Menu prices are stored in USD; UZS is shown as an approximation. */

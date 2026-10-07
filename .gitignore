@@ -3,6 +3,7 @@ node_modules
 
 # next.js build output / caches
 .next
+.next-e2e
 out
 *.tsbuildinfo
 
@@ -14,6 +15,12 @@ out
 # logs
 *.log
 npm-debug.log*
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
 
 # OS
 .DS_Store

@@ -16,7 +16,6 @@ import { useLanguage } from '../../context/LanguageContext';
 import GoldDust from './GoldDust';
 import MagneticButton from './MagneticButton';
 import Marquee from './Marquee';
-import Navbar from './Navbar';
 import SignatureDish from './SignatureDish';
 import { useLiveStatus } from './useLiveStatus';
 
@@ -107,7 +106,7 @@ const Hero: React.FC = () => {
   const live = useLiveStatus();
   const clock = useTashkentTime();
   const sectionRef = useRef<HTMLElement>(null);
-  const [showIntro, setShowIntro] = useState(true);
+  const [showIntro, setShowIntro] = useState(false);
 
   // Mouse parallax for the aurora, softened with a spring.
   const pointerX = useMotionValue(0);
@@ -128,16 +127,8 @@ const Hero: React.FC = () => {
   const backgroundY = useTransform(scrollYProgress, [0, 1], [0, 160]);
 
   useEffect(() => {
-    if (sessionStorage.getItem(INTRO_SEEN_KEY) || reduceMotion) {
-      setShowIntro(false);
-      return;
-    }
-    const timer = window.setTimeout(() => {
-      sessionStorage.setItem(INTRO_SEEN_KEY, '1');
-      setShowIntro(false);
-    }, 1500);
-    return () => window.clearTimeout(timer);
-  }, [reduceMotion]);
+    sessionStorage.setItem(INTRO_SEEN_KEY, '1');
+  }, []);
 
   const handlePointerMove = useCallback(
     (event: React.PointerEvent<HTMLElement>) => {
@@ -221,10 +212,6 @@ const Hero: React.FC = () => {
       <div className="hero-grain pointer-events-none absolute inset-0 z-[1] opacity-[0.07] mix-blend-overlay" />
       <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(10,10,10,0.85)_100%)]" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-48 bg-gradient-to-b from-transparent to-[#0A0A0A]" />
-
-      <div className="relative z-20">
-        <Navbar />
-      </div>
 
       {/* Vertical side text + gold thread (desktop) */}
       <motion.div
@@ -320,7 +307,7 @@ const Hero: React.FC = () => {
             <button
               type="button"
               onClick={() => scrollTo('#menu')}
-              className="group relative text-xs font-medium uppercase tracking-[0.25em] text-white/70 transition-colors duration-300 hover:text-white"
+              className="group relative inline-flex min-h-11 items-center text-xs font-medium uppercase tracking-[0.25em] text-white/70 transition-colors duration-300 hover:text-white"
             >
               {t('hero.exploreMenu')}
               <span
@@ -375,7 +362,7 @@ const Hero: React.FC = () => {
           <button
             type="button"
             onClick={() => scrollTo('#menu')}
-            className="group order-last flex w-full items-center justify-center gap-3 text-[10px] font-light uppercase tracking-[0.3em] text-white/45 transition-colors duration-300 hover:text-[#D4AF37] sm:order-none sm:w-auto"
+            className="group order-last flex min-h-11 w-full items-center justify-center gap-3 text-[10px] font-light uppercase tracking-[0.3em] text-white/45 transition-colors duration-300 hover:text-[#D4AF37] sm:order-none sm:w-auto"
             aria-label={t('hero.scrollDown')}
           >
             <span>{t('hero.scrollDown')}</span>

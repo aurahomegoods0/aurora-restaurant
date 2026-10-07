@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useReducedMotion } from 'framer-motion';
 
 interface Particle {
@@ -21,10 +21,17 @@ const MAX_PARTICLES = 90;
 const GoldDust: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const reduceMotion = useReducedMotion();
+  const [enabled, setEnabled] = useState(false);
+
+  useEffect(() => {
+    if (reduceMotion) return;
+    if (window.matchMedia('(max-width: 768px)').matches) return;
+    setEnabled(true);
+  }, [reduceMotion]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas || reduceMotion) return;
+    if (!canvas || !enabled) return;
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
@@ -104,9 +111,9 @@ const GoldDust: React.FC = () => {
       observer.disconnect();
       document.removeEventListener('visibilitychange', onVisibility);
     };
-  }, [reduceMotion]);
+  }, [enabled]);
 
-  if (reduceMotion) return null;
+  if (!enabled) return null;
 
   return (
     <canvas

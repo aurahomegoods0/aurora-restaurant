@@ -89,7 +89,7 @@ const MenuModal: React.FC<MenuModalProps> = ({ item, onClose }) => {
                       <Dialog.Close asChild>
                         <button
                           type="button"
-                          className="shrink-0 rounded-sm border border-white/10 p-2 text-white/70 transition-colors hover:border-[#D4AF37]/40 hover:text-[#E8C96A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D4AF37]"
+                          className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-sm border border-white/10 text-white/70 transition-colors hover:border-[#D4AF37]/40 hover:text-[#E8C96A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D4AF37]"
                           aria-label={t('menu.modal.close')}
                         >
                           <X className="h-5 w-5" aria-hidden />

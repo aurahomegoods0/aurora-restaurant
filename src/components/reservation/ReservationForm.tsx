@@ -160,7 +160,12 @@ const ReservationForm: React.FC = () => {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="space-y-10">
+    <form
+      onSubmit={onSubmit}
+      noValidate
+      className="space-y-10"
+      data-testid="reservation-form"
+    >
       {/* Honeypot: invisible to people and assistive tech; bots tend to fill it. */}
       <div aria-hidden="true" className="hidden" style={{ display: 'none' }}>
         <label htmlFor="website">Website</label>
@@ -274,7 +279,7 @@ const ReservationForm: React.FC = () => {
                   className="peer sr-only"
                   {...register('reservation_time')}
                 />
-                <span className="block cursor-pointer rounded-sm border border-white/10 px-3 py-2.5 text-center text-sm text-white/65 transition-all duration-300 hover:border-white/25 hover:text-white peer-checked:border-[#D4AF37]/60 peer-checked:bg-[#D4AF37]/10 peer-checked:text-[#E8C96A] peer-focus-visible:ring-2 peer-focus-visible:ring-[#D4AF37]/50 peer-disabled:cursor-not-allowed peer-disabled:opacity-30 peer-disabled:hover:border-white/10 peer-disabled:hover:text-white/65">
+                <span className="flex min-h-11 cursor-pointer items-center justify-center rounded-sm border border-white/10 px-3 text-center text-sm text-white/65 transition-all duration-300 hover:border-white/25 hover:text-white peer-checked:border-[#D4AF37]/60 peer-checked:bg-[#D4AF37]/10 peer-checked:text-[#E8C96A] peer-focus-visible:ring-2 peer-focus-visible:ring-[#D4AF37]/50 peer-disabled:cursor-not-allowed peer-disabled:opacity-30 peer-disabled:hover:border-white/10 peer-disabled:hover:text-white/65">
                   {slot}
                 </span>
               </label>
@@ -331,6 +336,7 @@ const ReservationForm: React.FC = () => {
       <button
         type="submit"
         disabled={isSubmitting}
+        data-testid="submit-reservation"
         className="flex w-full items-center justify-center gap-2 rounded-sm bg-[#D4AF37] px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.25em] text-black transition-all duration-300 hover:bg-[#E8C96A] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
       >
         {isSubmitting && <Loader2 className="h-4 w-4 animate-spin" aria-hidden />}
