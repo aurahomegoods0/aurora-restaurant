@@ -1,4 +1,6 @@
 export const restaurantConfig = {
+  /** Public site URL (Vercel subdomain). Update if you add a custom domain. */
+  siteUrl: 'https://aurora-restaurant-ecru.vercel.app',
   name: 'AURORA',
   tagline: 'Unparalleled Fine-Dining Experience',
   description: 'Toshkent markazidagi eng hashamatli va unikal taomlar restorani.',

@@ -5,7 +5,7 @@ import { restaurantConfig } from '../../restaurant.config';
 import { LanguageProvider } from '../context/LanguageContext';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://aurora.uz'),
+  metadataBase: new URL(restaurantConfig.siteUrl),
   title: 'AURORA | Unparalleled Fine-Dining Experience',
   description: restaurantConfig.description,
   keywords: [
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     description: restaurantConfig.description,
     type: 'website',
     locale: 'uz_UZ',
-    url: 'https://aurora.uz',
+    url: restaurantConfig.siteUrl,
     siteName: 'AURORA',
     images: [
       {
