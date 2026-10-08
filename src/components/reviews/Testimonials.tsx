@@ -80,20 +80,24 @@ const Testimonials: React.FC = () => {
   return (
     <section
       id="reviews"
-      className="relative overflow-x-clip bg-[#0A0A0A] px-4 py-20 sm:px-6 lg:px-8 lg:py-24"
+      className="relative overflow-x-clip bg-[#070707] px-4 py-20 sm:px-6 lg:px-8 lg:py-24"
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/20 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent" />
 
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
-          <header>
-            <p className="mb-3 text-xs font-light uppercase tracking-[0.35em] text-[#D4AF37]">
+          <header className="mx-auto w-full max-w-2xl text-center lg:mx-0 lg:text-left">
+            <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.42em] text-[#D4AF37]">
               {t('reviews.eyebrow')}
             </p>
-            <h2 className="text-3xl font-bold tracking-[0.12em] text-white sm:text-4xl">
+            <h2 className="font-serif text-4xl font-semibold tracking-[0.08em] text-[#F4EDE0] sm:text-5xl">
               {t('reviews.title')}
             </h2>
-            <p className="mt-3 max-w-xl text-sm text-white/50">
+            <span
+              className="mx-auto mt-6 block h-px w-16 bg-[#D4AF37] lg:mx-0"
+              aria-hidden
+            />
+            <p className="mt-5 max-w-xl text-sm leading-relaxed tracking-[0.02em] text-[#A89F8C] sm:text-base">
               {t('reviews.subtitle')}
             </p>
           </header>
@@ -102,7 +106,7 @@ const Testimonials: React.FC = () => {
             <button
               type="button"
               onClick={() => step(-1)}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white/70 hover:border-[#D4AF37]/50 hover:text-[#E8C96A]"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-[2px] border border-[#D4AF37]/25 text-[#F4EDE0]/70 hover:border-[#D4AF37]/50 hover:text-[#E8C96A]"
               aria-label={t('reviews.prev')}
             >
               <ChevronLeft className="h-5 w-5" />
@@ -110,7 +114,7 @@ const Testimonials: React.FC = () => {
             <button
               type="button"
               onClick={() => step(1)}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white/70 hover:border-[#D4AF37]/50 hover:text-[#E8C96A]"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-[2px] border border-[#D4AF37]/25 text-[#F4EDE0]/70 hover:border-[#D4AF37]/50 hover:text-[#E8C96A]"
               aria-label={t('reviews.next')}
             >
               <ChevronRight className="h-5 w-5" />
@@ -125,7 +129,7 @@ const Testimonials: React.FC = () => {
           {testimonials.map((item) => (
             <article
               key={item.id}
-              className="w-[min(100%,22rem)] shrink-0 snap-start rounded-sm border border-white/10 bg-[#121212] p-6"
+              className="w-[min(100%,22rem)] shrink-0 snap-start border border-[#D4AF37]/20 bg-[#0c0c0c] px-6 py-7"
             >
               <div className="flex items-center gap-3">
                 <div className="relative h-12 w-12 overflow-hidden rounded-full border border-[#D4AF37]/30">
@@ -138,8 +142,10 @@ const Testimonials: React.FC = () => {
                   />
                 </div>
                 <div className="min-w-0">
-                  <p className="truncate font-medium text-white">{item.name}</p>
-                  <p className="text-xs uppercase tracking-[0.18em] text-white/40">
+                  <p className="truncate font-serif text-lg tracking-[0.04em] text-[#F4EDE0]">
+                    {item.name}
+                  </p>
+                  <p className="text-xs uppercase tracking-[0.18em] text-[#A89F8C]">
                     {item.city[language]}
                   </p>
                 </div>
@@ -156,7 +162,7 @@ const Testimonials: React.FC = () => {
                   />
                 ))}
               </div>
-              <p className="mt-4 text-sm leading-relaxed text-white/70">
+              <p className="mt-4 text-[13px] leading-relaxed tracking-[0.01em] text-[#A89F8C]">
                 {item.text[language]}
               </p>
             </article>

@@ -4,7 +4,7 @@ import HomeBelowFold from '../components/home/HomeBelowFold';
 
 const HomePage: React.FC = () => {
   return (
-    <main id="main-content" className="min-h-screen overflow-x-clip bg-[#0A0A0A]">
+    <main id="main-content" className="min-h-screen overflow-x-clip bg-[#070707]">
       <Hero />
       <HomeBelowFold />
     </main>

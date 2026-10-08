@@ -20,7 +20,6 @@ import Marquee from './Marquee';
 import { useLiveStatus } from './useLiveStatus';
 
 const GoldDust = dynamic(() => import('./GoldDust'), { ssr: false });
-const SignatureDish = dynamic(() => import('./SignatureDish'), { ssr: false });
 
 interface AuroraLayer {
   color: string;
@@ -112,7 +111,7 @@ const Hero: React.FC = () => {
       id="hero"
       ref={sectionRef}
       onPointerMove={handlePointerMove}
-      className="relative flex min-h-screen w-full flex-col overflow-hidden bg-[#0A0A0A]"
+      className="relative flex min-h-screen w-full flex-col overflow-hidden bg-[#070707]"
     >
       <motion.div
         className="pointer-events-none absolute inset-0 z-0"
@@ -160,59 +159,32 @@ const Hero: React.FC = () => {
       </motion.div>
 
       <div className="hero-grain pointer-events-none absolute inset-0 z-[1] opacity-[0.07] mix-blend-overlay" />
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(10,10,10,0.85)_100%)]" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-48 bg-gradient-to-b from-transparent to-[#0A0A0A]" />
-
-      <div
-        className="absolute right-6 top-1/2 z-10 hidden -translate-y-1/2 flex-col items-center gap-6 lg:flex xl:right-10"
-        aria-hidden
-      >
-        <span className="h-24 w-px bg-gradient-to-b from-transparent via-[#D4AF37]/70 to-transparent" />
-        <span className="text-[10px] font-light uppercase tracking-[0.45em] text-white/50 [writing-mode:vertical-rl]">
-          {t('hero.sideText')}
-        </span>
-        <span className="h-24 w-px bg-gradient-to-b from-transparent via-[#D4AF37]/70 to-transparent" />
-      </div>
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(7,7,7,0.85)_100%)]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-48 bg-gradient-to-b from-transparent to-[#070707]" />
 
       <motion.div
         style={reduceMotion || !isLg ? undefined : { y: contentY, opacity: contentOpacity }}
-        className="relative z-10 mx-auto grid w-full max-w-7xl flex-1 items-center gap-12 px-4 pb-12 pt-32 sm:px-6 lg:grid-cols-[1fr_auto] lg:gap-16 lg:px-8 lg:pb-40 lg:pr-28"
+        className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 items-center px-4 pb-12 pt-32 sm:px-6 lg:px-8 lg:pb-28"
       >
-        <div>
-          <p className="mb-6 flex items-center gap-4 text-xs font-light uppercase tracking-[0.4em] text-[#D4AF37] sm:text-sm">
-            <span className="h-px w-10 bg-[#D4AF37]/70" aria-hidden />
-            {t('hero.intro')}
+        <div className="mx-auto flex max-w-[980px] flex-col items-center text-center">
+          <p className="text-[11px] font-medium uppercase tracking-[0.35em] text-[#D4AF37] sm:text-xs">
+            {t('hero.sideText')}
           </p>
-
-          <h1
-            className="relative whitespace-nowrap font-serif text-[clamp(3rem,13vw,12rem)] font-semibold leading-[0.9] tracking-[0.08em] text-transparent"
-            aria-label={restaurantConfig.name}
-          >
-            <span className="bg-gradient-to-b from-[#F3E4A8] via-[#D4AF37] to-[#8C6D1F] bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(212,175,55,0.25)]">
-              {restaurantConfig.name}
-            </span>
-            {!reduceMotion && isLg ? (
-              <span
-                className="hero-sweep pointer-events-none absolute inset-y-0 left-0 hidden w-1/3 bg-gradient-to-r from-transparent via-white/25 to-transparent lg:block"
-                aria-hidden
-              />
-            ) : null}
+          <span className="mt-6 block h-px w-16 bg-[#D4AF37]" aria-hidden />
+          <h1 className="mt-6 max-w-[18ch] font-serif text-[clamp(2.25rem,5.4vw,4rem)] font-medium leading-[1.15] tracking-[0.02em] text-[#F4EDE0] sm:max-w-none">
+            {t('hero.title')}{' '}
+            <span className="text-[#D4AF37]">{t('hero.titleAccent')}</span>
           </h1>
-
-          <p className="mt-6 max-w-xl text-sm font-light leading-relaxed text-white/60 sm:text-base lg:text-lg">
+          <p className="mt-5 max-w-[560px] text-[15px] font-light leading-relaxed tracking-[0.02em] text-[#A89F8C] sm:text-lg">
             {t('hero.description')}
           </p>
 
-          <div className="mt-10 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-8">
+          <div className="mt-8 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-center sm:gap-4">
             <MagneticButton
               type="button"
               onClick={() => scrollTo('#reservation')}
-              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full border border-[#D4AF37]/50 bg-white/[0.04] px-8 py-4 text-xs font-semibold uppercase tracking-[0.25em] text-[#F3E4A8] backdrop-blur-md transition-[border-color,box-shadow] duration-500 hover:border-[#D4AF37] hover:shadow-[0_0_50px_rgba(212,175,55,0.35)]"
+              className="group relative inline-flex min-h-11 items-center justify-center gap-2 overflow-hidden rounded-[2px] bg-[#D4AF37] px-7 py-4 text-[12px] font-medium uppercase tracking-[0.18em] text-[#070707] transition-colors duration-300 hover:bg-[#E8C96A]"
             >
-              <span
-                className="absolute inset-y-0 left-0 w-1/2 -translate-x-[120%] -skew-x-12 bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent transition-transform duration-700 group-hover:translate-x-[220%]"
-                aria-hidden
-              />
               <span className="relative">{t('hero.reserveTable')}</span>
               <ArrowUpRight
                 className="relative h-4 w-4 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
@@ -222,19 +194,14 @@ const Hero: React.FC = () => {
 
             <button
               type="button"
-              onClick={() => scrollTo('#menu')}
-              className="group relative inline-flex min-h-11 items-center text-xs font-medium uppercase tracking-[0.25em] text-white/70 transition-colors duration-300 hover:text-white"
+              onClick={() => scrollTo('#flipbook')}
+              className="inline-flex min-h-11 items-center justify-center rounded-[2px] border border-[#D4AF37]/55 px-7 py-4 text-[12px] font-medium uppercase tracking-[0.18em] text-[#D4AF37] transition-colors duration-300 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10"
             >
-              {t('hero.exploreMenu')}
-              <span
-                className="absolute -bottom-1.5 left-0 h-px w-full origin-left scale-x-0 bg-[#D4AF37] transition-transform duration-500 group-hover:scale-x-100"
-                aria-hidden
-              />
+              {t('hero.openBook')}
             </button>
           </div>
         </div>
 
-        {isLg ? <SignatureDish onOpenMenu={() => scrollTo('#menu')} /> : null}
       </motion.div>
 
       <div className="relative z-10 lg:absolute lg:inset-x-0 lg:bottom-0">

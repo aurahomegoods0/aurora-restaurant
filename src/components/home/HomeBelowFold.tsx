@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import LazyMount from '../chrome/LazyMount';
 
 const sectionFallback = (id: string, minHeight = 'min-h-[50vh]') => (
-  <section id={id} className={`${minHeight} bg-[#0A0A0A]`} aria-busy="true" />
+  <section id={id} className={`${minHeight} bg-[#070707]`} aria-busy="true" />
 );
 
 const MenuSection = dynamic(() => import('../menu/MenuSection'), {
@@ -47,7 +47,7 @@ const HomeBelowFold: React.FC = () => {
       <LazyMount fallback={sectionFallback('about')}>
         <AboutSection />
       </LazyMount>
-      <LazyMount fallback={<div className="min-h-[40vh] bg-[#0A0A0A]" />}>
+      <LazyMount fallback={<div className="min-h-[40vh] bg-[#070707]" />}>
         <Testimonials />
       </LazyMount>
       <LazyMount fallback={sectionFallback('reservation', 'min-h-[80vh]')}>

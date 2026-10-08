@@ -20,14 +20,14 @@ const Footer: React.FC = () => {
   return (
     <footer
       id="contact"
-      className="relative overflow-x-clip border-t border-white/10 bg-[#080808] px-4 pt-16 pb-[max(2rem,env(safe-area-inset-bottom))] sm:px-6 lg:px-8"
+      className="relative overflow-x-clip border-t border-[#D4AF37]/20 bg-[#070707] px-4 pt-16 pb-[max(2rem,env(safe-area-inset-bottom))] sm:px-6 lg:px-8"
     >
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_1.1fr]">
         <div className="min-w-0">
-          <p className="text-2xl font-bold tracking-[0.3em] text-[#D4AF37]">
+          <p className="font-serif text-[28px] font-semibold tracking-[0.28em] text-[#D4AF37]">
             {restaurantConfig.name}
           </p>
-          <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/50">
+          <p className="mt-3 max-w-sm text-sm leading-relaxed tracking-[0.02em] text-[#A89F8C]">
             {t('footer.tagline')}
           </p>
 
@@ -77,7 +77,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="min-h-[240px] overflow-hidden rounded-sm border border-white/10">
+        <div className="min-h-[240px] overflow-hidden rounded-[2px] border border-[#D4AF37]/22">
           <ContactMap />
         </div>
       </div>
@@ -136,7 +136,7 @@ const Footer: React.FC = () => {
         </div>
       </div>
 
-      <p className="mx-auto mt-8 max-w-7xl text-center text-xs text-white/35 sm:text-left">
+      <p className="mx-auto mt-8 max-w-7xl text-center text-[11px] tracking-[0.1em] text-[#6B6558] sm:text-left">
         © {year} {restaurantConfig.name}. {t('footer.rights')}
       </p>
     </footer>

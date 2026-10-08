@@ -19,6 +19,7 @@ import type {
   RestaurantTable,
 } from '@/types/reservation';
 import FloorMap from './FloorMap';
+import { useLanguage } from '@/context/LanguageContext';
 
 const ReservationVoucher = dynamic(() => import('./ReservationVoucher'), {
   ssr: false,
@@ -49,10 +50,10 @@ const DEFAULT_VALUES: ReservationInput = {
 };
 
 const inputClass =
-  'w-full rounded-sm border border-white/10 bg-[#121212] px-4 py-3 text-sm text-white placeholder:text-white/35 outline-none transition-colors focus:border-[#D4AF37]/40 focus:ring-1 focus:ring-[#D4AF37]/20 aria-[invalid=true]:border-red-500/60';
+  'w-full rounded-none border-0 border-b border-[#D4AF37]/18 bg-transparent px-3 py-3.5 text-sm text-[#F4EDE0] placeholder:text-[#A89F8C] outline-none transition-colors focus:border-[#D4AF37]/55 aria-[invalid=true]:border-red-500/60';
 
 const labelClass =
-  'mb-2 block text-[11px] font-medium uppercase tracking-[0.2em] text-white/55';
+  'mb-2 block text-[11px] font-medium uppercase tracking-[0.2em] text-[#A89F8C]';
 
 interface FieldProps {
   label: string;
@@ -76,6 +77,7 @@ const Field: React.FC<FieldProps> = ({ label, htmlFor, error, children }) => (
 );
 
 const ReservationForm: React.FC = () => {
+  const { t } = useLanguage();
   const {
     register,
     handleSubmit,
@@ -349,10 +351,10 @@ const ReservationForm: React.FC = () => {
         type="submit"
         disabled={isSubmitting}
         data-testid="submit-reservation"
-        className="flex w-full items-center justify-center gap-2 rounded-sm bg-[#D4AF37] px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.25em] text-black transition-all duration-300 hover:bg-[#E8C96A] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+        className="flex w-full items-center justify-center gap-2 rounded-[2px] bg-[#D4AF37] px-8 py-4 text-[12px] font-medium uppercase tracking-[0.18em] text-[#070707] transition-colors duration-300 hover:bg-[#E8C96A] disabled:cursor-not-allowed disabled:opacity-60"
       >
         {isSubmitting && <Loader2 className="h-4 w-4 animate-spin" aria-hidden />}
-        {isSubmitting ? 'Yuborilmoqda...' : 'Bron qilish'}
+        {isSubmitting ? t('reservation.submitting') : t('reservation.submit')}
       </button>
     </form>
   );

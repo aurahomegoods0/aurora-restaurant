@@ -123,13 +123,13 @@ const Navbar: React.FC = () => {
         className={cn(
           'fixed inset-x-0 top-0 z-50 border-b border-[#D4AF37]/20 backdrop-blur-md transition-all duration-300',
           isScrolled
-            ? 'bg-[#0A0A0A]/80 shadow-[0_4px_30px_rgba(0,0,0,0.5)]'
-            : 'bg-[#0A0A0A]/40',
+            ? 'bg-[#070707]/94 shadow-[0_4px_30px_rgba(0,0,0,0.5)]'
+            : 'bg-[#070707]/94',
         )}
       >
         <nav
           aria-label="Asosiy navigatsiya"
-          className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
+          className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
         >
           {/* Brand Logo */}
           <a
@@ -137,7 +137,7 @@ const Navbar: React.FC = () => {
             onClick={(e) => handleNavClick(e, '#hero')}
             className="group flex min-h-11 items-center gap-2"
           >
-            <span className="text-2xl font-bold tracking-[0.3em] text-[#D4AF37] transition-transform duration-300 group-hover:scale-105 sm:text-3xl">
+            <span className="font-serif text-[22px] font-semibold tracking-[0.28em] text-[#D4AF37] transition-opacity duration-300 group-hover:opacity-80">
               {restaurantConfig.name}
             </span>
             <span className="hidden h-px w-8 bg-gradient-to-r from-[#D4AF37] to-transparent sm:block" />
@@ -151,10 +151,10 @@ const Navbar: React.FC = () => {
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
                 className={cn(
-                  'relative inline-flex min-h-11 items-center text-sm font-medium uppercase tracking-widest transition-colors duration-300',
+                  'relative inline-flex min-h-11 items-center text-[11px] font-medium uppercase tracking-[0.2em] transition-colors duration-300',
                   activeSection === link.href
                     ? 'text-[#D4AF37]'
-                    : 'text-white/70 hover:text-white',
+                    : 'text-[#F4EDE0] hover:text-[#D4AF37]',
                 )}
               >
                 {t(link.labelKey)}
@@ -178,7 +178,7 @@ const Navbar: React.FC = () => {
                 aria-label="Til"
                 aria-haspopup="listbox"
                 aria-expanded={isLangOpen}
-                className="flex min-h-11 items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 text-xs font-medium uppercase tracking-wider text-white/80 transition-all duration-300 hover:border-[#D4AF37]/40 hover:text-white"
+                className="flex min-h-11 items-center gap-1.5 rounded-[2px] border border-white/10 bg-white/5 px-3 text-xs font-medium uppercase tracking-wider text-[#F4EDE0]/80 transition-all duration-300 hover:border-[#D4AF37]/40 hover:text-white"
               >
                 <Globe className="h-3.5 w-3.5 text-[#D4AF37]" />
                 {language.toUpperCase()}
@@ -226,7 +226,7 @@ const Navbar: React.FC = () => {
             <a
               href="#reservation"
               onClick={handleBookClick}
-              className="hidden min-h-11 items-center rounded-full bg-gradient-to-r from-[#D4AF37] via-[#E8C96A] to-[#D4AF37] px-5 text-sm font-semibold uppercase tracking-wider text-[#0A0A0A] shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] sm:inline-flex"
+              className="hidden min-h-11 items-center rounded-[2px] bg-[#D4AF37] px-[18px] py-3 text-[11px] font-medium uppercase tracking-[0.16em] text-[#070707] transition-colors duration-300 hover:bg-[#E8C96A] sm:inline-flex"
             >
               {t('nav.bookTable')}
             </a>
@@ -235,7 +235,7 @@ const Navbar: React.FC = () => {
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-colors duration-300 hover:border-[#D4AF37]/40 lg:hidden"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-[2px] border border-white/10 bg-white/5 text-white transition-colors duration-300 hover:border-[#D4AF37]/40 lg:hidden"
               aria-label="Menyu"
               aria-expanded={isMobileMenuOpen}
             >
@@ -257,7 +257,7 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-[#0A0A0A]/95 backdrop-blur-xl lg:hidden"
+            className="fixed inset-0 z-40 bg-[#070707]/95 backdrop-blur-xl lg:hidden"
           >
             <motion.div
               initial={{ x: '100%' }}
@@ -296,7 +296,7 @@ const Navbar: React.FC = () => {
                 <a
                   href="#reservation"
                   onClick={handleBookClick}
-                  className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#D4AF37] via-[#E8C96A] to-[#D4AF37] px-8 py-4 text-base font-semibold uppercase tracking-wider text-[#0A0A0A] shadow-[0_0_30px_rgba(212,175,55,0.3)] transition-transform duration-300 hover:scale-105"
+                  className="inline-flex items-center justify-center rounded-[2px] bg-[#D4AF37] px-8 py-4 text-[12px] font-medium uppercase tracking-[0.18em] text-[#070707] transition-colors duration-300 hover:bg-[#E8C96A]"
                 >
                   {t('nav.bookTable')}
                 </a>

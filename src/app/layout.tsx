@@ -1,5 +1,10 @@
 import './globals.css';
 import type { Metadata, Viewport } from 'next';
+import {
+  Cormorant_Garamond,
+  Instrument_Sans,
+  Playfair_Display,
+} from 'next/font/google';
 import React from 'react';
 import { restaurantConfig } from '../../restaurant.config';
 import { LanguageProvider } from '../context/LanguageContext';
@@ -11,6 +16,26 @@ import CookieBanner from '../components/legal/CookieBanner';
 import HashScroll from '../components/chrome/HashScroll';
 import RestaurantJsonLd from '../components/seo/RestaurantJsonLd';
 import Observability from '../components/analytics/Observability';
+
+const playfair = Playfair_Display({
+  subsets: ['latin', 'latin-ext'],
+  variable: '--font-playfair',
+  display: 'swap',
+});
+
+const instrument = Instrument_Sans({
+  subsets: ['latin', 'latin-ext'],
+  variable: '--font-instrument',
+  display: 'swap',
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin', 'cyrillic', 'cyrillic-ext'],
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-cormorant',
+  display: 'swap',
+});
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -86,8 +111,11 @@ interface RootLayoutProps {
 
 const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
-    <html lang={restaurantConfig.defaultLanguage} className="overflow-x-hidden">
-      <body className="min-h-screen overflow-x-hidden bg-[#0A0A0A] text-white antialiased">
+    <html
+      lang={restaurantConfig.defaultLanguage}
+      className={`${playfair.variable} ${instrument.variable} ${cormorant.variable} overflow-x-hidden`}
+    >
+      <body className="min-h-screen overflow-x-hidden bg-[#070707] font-sans text-[#F4EDE0] antialiased">
         <RestaurantJsonLd />
         <LanguageProvider>
           <a

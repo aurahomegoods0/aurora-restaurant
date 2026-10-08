@@ -56,14 +56,14 @@ const CookieBanner: React.FC = () => {
             <button
               type="button"
               onClick={() => choose('all')}
-              className="inline-flex min-h-11 min-w-[44px] items-center justify-center rounded-full bg-gradient-to-r from-[#D4AF37] via-[#E8C96A] to-[#D4AF37] px-5 text-sm font-semibold uppercase tracking-wider text-[#0A0A0A]"
+              className="inline-flex min-h-11 min-w-[44px] items-center justify-center rounded-[2px] bg-[#D4AF37] px-5 text-sm font-medium uppercase tracking-wider text-[#070707]"
             >
               {t('cookies.acceptAll')}
             </button>
             <button
               type="button"
               onClick={() => choose('necessary')}
-              className="inline-flex min-h-11 min-w-[44px] items-center justify-center rounded-full border border-white/15 px-5 text-sm uppercase tracking-wider text-white/80 hover:border-[#D4AF37]/40 hover:text-white"
+              className="inline-flex min-h-11 min-w-[44px] items-center justify-center rounded-[2px] border border-[#D4AF37]/55 px-5 text-sm uppercase tracking-wider text-[#D4AF37] hover:border-[#D4AF37] hover:bg-[#D4AF37]/10"
             >
               {t('cookies.necessary')}
             </button>

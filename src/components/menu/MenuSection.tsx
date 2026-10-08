@@ -167,14 +167,14 @@ const MenuSection: React.FC = () => {
           <p className="mb-4 text-[11px] font-light uppercase tracking-[0.42em] text-[#D4AF37]">
             {t('menu.eyebrow')}
           </p>
-          <h2 className="font-serif text-4xl font-semibold tracking-[0.08em] text-white sm:text-5xl lg:text-6xl">
+          <h2 className="font-serif text-4xl font-semibold tracking-[0.08em] text-[#F4EDE0] sm:text-5xl lg:text-6xl">
             {t('menu.title')}
           </h2>
           <span
             className="mx-auto mt-6 block h-px w-16 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"
             aria-hidden
           />
-          <p className="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-white/55 sm:text-base">
+          <p className="mx-auto mt-5 max-w-xl text-sm leading-relaxed tracking-[0.02em] text-[#A89F8C] sm:text-base">
             {t('menu.subtitle')}
           </p>
           {!loading && items.length > 0 ? (

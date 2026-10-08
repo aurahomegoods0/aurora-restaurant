@@ -1,0 +1,125 @@
+.gold-leaf-root {
+  position: relative;
+}
+
+.gold-leaf-root:has(.gold-leaf-stage) img {
+  filter: grayscale(1) contrast(1.05);
+}
+
+.gold-leaf-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  overflow: hidden;
+  touch-action: none;
+  cursor: none;
+  user-select: none;
+}
+
+[role='button'].gold-leaf-stage {
+  touch-action: none;
+}
+
+.gold-leaf-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.gold-leaf-hint {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.gold-leaf-hint-kicker {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: #3a2a08;
+}
+
+.gold-leaf-hint-title {
+  max-width: 16rem;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(1.15rem, 2.4vw, 1.65rem);
+  font-style: italic;
+  line-height: 1.3;
+  color: #2a1e08;
+}
+
+.gold-leaf-hint.is-scratching {
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.gold-leaf-nail {
+  pointer-events: none;
+  position: absolute;
+  z-index: 4;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 50% 50% 50% 0;
+  background: linear-gradient(135deg, #f8e7b0, #d4af37 55%, #7a5a14);
+  box-shadow: 0 0 0 1px rgba(58, 42, 8, 0.35);
+  transform: rotate(-30deg);
+}
+
+.gold-leaf-flake {
+  pointer-events: none;
+  position: absolute;
+  z-index: 5;
+  width: 7px;
+  height: 4px;
+  background: linear-gradient(90deg, #f3e4a8, #d4af37, #8c6d1f);
+  animation: gold-leaf-flake 720ms ease-in forwards;
+}
+
+.gold-leaf-stage.is-peeling {
+  animation: gold-leaf-peel 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  pointer-events: none;
+}
+
+@keyframes gold-leaf-peel {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(18%, -110%, 0) rotate(-16deg);
+    opacity: 0;
+  }
+}
+
+@keyframes gold-leaf-flake {
+  to {
+    transform: translate3d(var(--fx), var(--fy), 0) rotate(var(--fr));
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gold-leaf-flake {
+    animation: none;
+    display: none;
+  }
+
+  .gold-leaf-stage.is-peeling {
+    animation: gold-leaf-fade 0.4s ease forwards;
+  }
+
+  @keyframes gold-leaf-fade {
+    to {
+      opacity: 0;
+    }
+  }
+}

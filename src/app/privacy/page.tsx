@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <main id="main-content" className="min-h-screen bg-[#0A0A0A]">
+    <main id="main-content" className="min-h-screen bg-[#070707]">
       <LegalDocument kind="privacy" />
     </main>
   );

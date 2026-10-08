@@ -112,7 +112,7 @@ const MenuFlipbook = () => {
           </p>
           <h2
             id="flipbook-heading"
-            className="font-serif text-4xl font-semibold tracking-[0.08em] text-white sm:text-5xl lg:text-6xl"
+            className="font-serif text-4xl font-semibold tracking-[0.08em] text-[#F4EDE0] sm:text-5xl lg:text-6xl"
           >
             {t('flipbook.title')}
           </h2>
@@ -120,7 +120,7 @@ const MenuFlipbook = () => {
             className="mx-auto mt-6 block h-px w-16 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"
             aria-hidden
           />
-          <p className="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-white/55 sm:text-base">
+          <p className="mx-auto mt-5 max-w-xl text-sm leading-relaxed tracking-[0.02em] text-[#A89F8C] sm:text-base">
             {t('flipbook.subtitle')}
           </p>
           {items.length > 0 ? (

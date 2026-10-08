@@ -1,0 +1,39 @@
+.about-leader {
+  min-width: 1.25rem;
+  flex: 1 1 auto;
+  height: 1px;
+  background-image: radial-gradient(
+    circle,
+    rgba(212, 175, 55, 0.5) 0.9px,
+    transparent 1.15px
+  );
+  background-size: 7px 1px;
+  background-repeat: repeat-x;
+  background-position: center;
+}
+
+.about-index {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+@keyframes about-sheen {
+  from {
+    transform: translate3d(-30%, 0, 0);
+  }
+  to {
+    transform: translate3d(230%, 0, 0);
+  }
+}
+
+.about-featured-sheen {
+  animation: about-sheen 8s ease-in-out 1.2s infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-featured-sheen {
+    animation: none;
+    display: none;
+  }
+}

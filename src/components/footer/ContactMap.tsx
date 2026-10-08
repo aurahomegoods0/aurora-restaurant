@@ -52,7 +52,7 @@ const ContactMap: React.FC = () => {
             setCookieConsent('all');
             setAllowed(true);
           }}
-          className="inline-flex min-h-11 items-center rounded-full bg-[#D4AF37] px-4 text-sm font-semibold uppercase tracking-wider text-[#0A0A0A]"
+          className="inline-flex min-h-11 items-center rounded-[2px] bg-[#D4AF37] px-4 text-sm font-medium uppercase tracking-wider text-[#070707]"
         >
           {t('footer.loadMap')}
         </button>
@@ -60,7 +60,7 @@ const ContactMap: React.FC = () => {
           href={restaurantConfig.contact.mapDirectionsUrl}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex min-h-11 items-center rounded-full border border-white/20 px-4 text-sm uppercase tracking-wider text-white/80"
+          className="inline-flex min-h-11 items-center rounded-[2px] border border-[#D4AF37]/55 px-4 text-sm uppercase tracking-wider text-[#D4AF37]"
         >
           {t('footer.openMap')}
         </a>
