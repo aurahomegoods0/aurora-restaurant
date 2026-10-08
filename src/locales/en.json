@@ -152,7 +152,60 @@
     "title": "Hold the evening",
     "subtitle": "Choose a date. Pick a table. Seats are limited.",
     "submit": "Confirm table",
-    "submitting": "Sending…"
+    "submitting": "Sending…",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Full name",
+      "phone": "Phone",
+      "phonePlaceholder": "+998 90 123 45 67",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "partySize": "Party size",
+      "partyOption": "{size} guests",
+      "date": "Date",
+      "time": "Time",
+      "selectTable": "Choose a table",
+      "selectedTable": "Selected table: №{number} ({capacity} seats)",
+      "tooSmall": "This table seats up to {capacity} guests; you chose {partySize}.",
+      "tableTooSmall": "This table seats up to {capacity} guests",
+      "serverDown": "Could not reach the server. Check your connection and try again."
+    },
+    "floor": {
+      "free": "Free",
+      "taken": "Taken",
+      "selected": "Selected",
+      "live": "Live",
+      "offline": "Connection lost",
+      "connecting": "Connecting…",
+      "pickSlot": "Choose a date and time first to see which tables are free.",
+      "loading": "Loading…",
+      "emptyZone": "No tables",
+      "takenNotice": "The table you chose was just booked for that time. Please pick another.",
+      "tableTooltip": "Table №{number} · {capacity} seats",
+      "tableAria": "Table {number}, {capacity} seats",
+      "zone": {
+        "window": "By the window",
+        "vip": "VIP",
+        "hall": "Main room"
+      },
+      "hint": {
+        "window": "City view",
+        "vip": "Private room",
+        "hall": "Centre of the house"
+      }
+    },
+    "voucher": {
+      "code": "Reservation number",
+      "guest": "Guest",
+      "date": "Date",
+      "time": "Time",
+      "table": "Table",
+      "party": "Party",
+      "partyValue": "{size} guests",
+      "pdf": "Download PDF voucher",
+      "pdfError": "Could not create the PDF. Please try again.",
+      "new": "New reservation"
+    }
   },
   "reviews": {
     "eyebrow": "Guests",
@@ -175,6 +228,7 @@
     "legal": "Legal",
     "privacy": "Privacy policy",
     "cookies": "Cookies & GDPR",
+    "terms": "Terms of service",
     "cookieSettings": "Cookie settings",
     "rights": "All rights reserved."
   },
@@ -211,10 +265,60 @@
     "s2Title": "Why we use it",
     "s2Body": "To book a table, confirm the evening, contact you and meet legal duties. We do not send marketing without consent.",
     "s3Title": "Who we share with",
-    "s3Body": "Data is stored in our booking system (Supabase) and, for confirmation, sent to the restaurant’s Telegram admin channel. We do not sell it.",
+    "s3Body": "Data is stored in our booking system (Supabase). The house is alerted on Telegram, and a confirmation email may be sent to the address you gave. We do not sell it.",
     "s4Title": "How long we keep it",
     "s4Body": "Reservation records are kept for service and accounting, then deleted or anonymised. Cookie consent is stored on your device.",
     "s5Title": "Your rights",
     "s5Body": "To see, correct or delete your data, write to info@aurora.uz or call +998 71 200 00 00. We aim to reply within 14 days."
+  },
+  "terms": {
+    "pageTitle": "Terms of service",
+    "updated": "Updated: 7 October 2026",
+    "intro": "These house rules apply when you browse AURORA Restaurant’s website or reserve a table. Dining in the room is also subject to the evening’s service.",
+    "s1Title": "Reservations",
+    "s1Body": "A request on this site is an ask for a table, not a guaranteed booking until the house confirms it. Please arrive on time. If you cannot come, cancel as early as you can so the seat can be offered again.",
+    "s2Title": "The evening",
+    "s2Body": "Dress is smart. Last seating follows the hours shown on the site. The kitchen may decline a request that does not fit the room, party size or the night’s book.",
+    "s3Title": "Website use",
+    "s3Body": "Do not misuse the reservation form, scrape the site or attempt to disrupt service. Menu, prices and hours can change. Photographs are illustrative.",
+    "s4Title": "Liability",
+    "s4Body": "AURORA is not liable for delays, fully booked evenings or third-party services (maps, email, payments). Nothing here limits rights you have under Uzbek consumer law.",
+    "s5Title": "Contact",
+    "s5Body": "Questions about these terms: info@aurora.uz or +998 71 200 00 00. The governing law is that of the Republic of Uzbekistan."
+  },
+  "kitchen": {
+    "eyebrow": "Service",
+    "title": "Kitchen desk",
+    "gateBody": "The evening’s book. Password stays in the house.",
+    "unconfigured": "Set ADMIN_PASSWORD on the server to open this desk.",
+    "password": "Password",
+    "signIn": "Enter",
+    "signingIn": "Opening…",
+    "signOut": "Leave the desk",
+    "deskBody": "Confirm, complete or release a table. The guest is emailed when the status changes.",
+    "filters": "Reservation filters",
+    "empty": "No reservations in this view.",
+    "guests": "guests",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "complete": "Seated",
+    "filter": {
+      "tonight": "Tonight",
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "cancelled": "Cancelled",
+      "all": "All"
+    },
+    "status": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "cancelled": "Cancelled",
+      "completed": "Seated"
+    },
+    "toast": {
+      "confirm": "Guest emailed. Table held.",
+      "cancel": "Reservation released.",
+      "complete": "Marked as seated."
+    }
   }
 }

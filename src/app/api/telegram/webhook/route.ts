@@ -1,26 +1,19 @@
 import { createHash, timingSafeEqual } from 'node:crypto';
-import { NextResponse } from 'next/server';
+import { after, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { ZONE_LABELS } from '@/lib/reservation-format';
-import { createServiceRoleSupabaseClient } from '@/lib/supabase/server';
+import { sendGuestEmail } from '@/lib/guest-email';
+import {
+  guestEmailKindFor,
+  transitionReservation,
+} from '@/lib/reservation-ops';
 import {
   answerTelegramCallback,
   editTelegramReservationMessage,
   type CallbackAction,
 } from '@/lib/telegram';
-import type {
-  ReservationDetails,
-  ReservationStatus,
-  TableZone,
-} from '@/types/reservation';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
-
-const RESERVATION_COLUMNS =
-  'id, guest_name, guest_email, guest_phone, party_size, reservation_date, reservation_time, status, tables(table_number, zone)';
-
-const PG_UNIQUE_VIOLATION = '23505';
 
 const updateSchema = z.object({
   callback_query: z
@@ -53,46 +46,10 @@ const parseCallbackData = (
     : null;
 };
 
-/** Which current statuses each action may move away from, and the status it sets. */
-const TRANSITIONS: Record<
-  CallbackAction,
-  { from: ReservationStatus[]; to: ReservationStatus; toast: string }
-> = {
-  confirm: { from: ['pending'], to: 'confirmed', toast: '✅ Reservation confirmed' },
-  cancel: {
-    from: ['pending', 'confirmed'],
-    to: 'cancelled',
-    toast: '❌ Reservation cancelled',
-  },
+const TOAST: Record<CallbackAction, string> = {
+  confirm: '✅ Reservation confirmed',
+  cancel: '❌ Reservation cancelled',
 };
-
-interface ReservationRow {
-  id: string;
-  guest_name: string;
-  guest_email: string;
-  guest_phone: string;
-  party_size: number;
-  reservation_date: string;
-  reservation_time: string;
-  status: ReservationStatus;
-  tables: { table_number: number; zone: TableZone } | null;
-}
-
-const toDetails = (row: ReservationRow): ReservationDetails | null =>
-  row.tables && row.tables.zone in ZONE_LABELS
-    ? {
-        id: row.id,
-        guest_name: row.guest_name,
-        guest_email: row.guest_email,
-        guest_phone: row.guest_phone,
-        party_size: row.party_size,
-        reservation_date: row.reservation_date,
-        reservation_time: row.reservation_time,
-        table_number: row.tables.table_number,
-        zone: row.tables.zone,
-        status: row.status,
-      }
-    : null;
 
 const secretsMatch = (received: string | null, expected: string): boolean => {
   if (!received) return false;
@@ -142,59 +99,49 @@ export async function POST(request: Request): Promise<NextResponse> {
   }
 
   const { action, reservationId } = callback;
-  const { from, to, toast } = TRANSITIONS[action];
   const { chat, message_id: messageId } = query.message;
 
   try {
-    const supabase = createServiceRoleSupabaseClient();
+    const result = await transitionReservation(reservationId, action);
 
-    const { data: updated, error: updateError } = await supabase
-      .from('reservations')
-      .update({ status: to })
-      .eq('id', reservationId)
-      .in('status', from)
-      .select(RESERVATION_COLUMNS)
-      .maybeSingle<ReservationRow>();
-
-    if (updateError) {
-      console.error('[telegram webhook] update failed', updateError);
+    if (!result.ok) {
       await answerTelegramCallback(
         query.id,
-        updateError.code === PG_UNIQUE_VIOLATION
+        result.conflict
           ? 'This table slot has been booked by someone else.'
-          : 'Database error, please try again.',
+          : result.error,
         true,
       );
       return ack();
     }
 
-    let current = updated;
-    let message = toast;
+    const message = result.changed
+      ? TOAST[action]
+      : `Already ${result.reservation.status}, nothing changed.`;
 
-    if (!current) {
-      // Nothing was updated: the reservation is missing or already in a final state
-      // (e.g. another admin pressed a button first). Show its real state instead.
-      const { data: existing } = await supabase
-        .from('reservations')
-        .select(RESERVATION_COLUMNS)
-        .eq('id', reservationId)
-        .maybeSingle<ReservationRow>();
-
-      current = existing;
-      message = existing
-        ? `Already ${existing.status}, nothing changed.`
-        : 'Reservation not found.';
+    const edited = await editTelegramReservationMessage(
+      chat.id,
+      messageId,
+      result.reservation,
+    );
+    if (!edited.ok) {
+      console.error('[telegram webhook] edit failed', edited.error);
     }
 
-    const details = current ? toDetails(current) : null;
-    if (details) {
-      const edited = await editTelegramReservationMessage(
-        chat.id,
-        messageId,
-        details,
-      );
-      if (!edited.ok) {
-        console.error('[telegram webhook] edit failed', edited.error);
+    if (result.changed) {
+      const kind = guestEmailKindFor(result.reservation.status);
+      if (kind) {
+        after(async () => {
+          const emailed = await sendGuestEmail(result.reservation, kind).catch(
+            (error: unknown) => ({
+              ok: false as const,
+              error: error instanceof Error ? error.name : 'unknown error',
+            }),
+          );
+          if (!emailed.ok) {
+            console.error('[telegram webhook] guest email failed', emailed.error);
+          }
+        });
       }
     }
 

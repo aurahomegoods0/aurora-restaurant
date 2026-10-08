@@ -129,7 +129,10 @@ const ReservationForm: React.FC = () => {
     if (selectedTable && values.party_size > selectedTable.capacity) {
       setError('table_id', {
         type: 'manual',
-        message: `Bu stol ${selectedTable.capacity} kishigacha mo'ljallangan`,
+        message: t('reservation.form.tableTooSmall').replace(
+          '{capacity}',
+          String(selectedTable.capacity),
+        ),
       });
       return;
     }
@@ -157,9 +160,7 @@ const ReservationForm: React.FC = () => {
         setError(field as keyof ReservationInput, { type: 'server', message });
       }
     } catch {
-      setServerError(
-        "Server bilan bog'lanib bo'lmadi. Internetni tekshirib, qayta urinib ko'ring.",
-      );
+      setServerError(t('reservation.form.serverDown'));
     }
   });
 
@@ -194,7 +195,7 @@ const ReservationForm: React.FC = () => {
 
       <div className="grid gap-5 sm:grid-cols-2">
         <Field
-          label="Ism"
+          label={t('reservation.form.name')}
           htmlFor="guest_name"
           error={errors.guest_name?.message}
         >
@@ -202,7 +203,7 @@ const ReservationForm: React.FC = () => {
             id="guest_name"
             type="text"
             autoComplete="name"
-            placeholder="Ism familiya"
+            placeholder={t('reservation.form.namePlaceholder')}
             aria-invalid={Boolean(errors.guest_name)}
             className={inputClass}
             {...register('guest_name')}
@@ -210,7 +211,7 @@ const ReservationForm: React.FC = () => {
         </Field>
 
         <Field
-          label="Telefon"
+          label={t('reservation.form.phone')}
           htmlFor="guest_phone"
           error={errors.guest_phone?.message}
         >
@@ -218,7 +219,7 @@ const ReservationForm: React.FC = () => {
             id="guest_phone"
             type="tel"
             autoComplete="tel"
-            placeholder="+998 90 123 45 67"
+            placeholder={t('reservation.form.phonePlaceholder')}
             aria-invalid={Boolean(errors.guest_phone)}
             className={inputClass}
             {...register('guest_phone')}
@@ -226,7 +227,7 @@ const ReservationForm: React.FC = () => {
         </Field>
 
         <Field
-          label="Email"
+          label={t('reservation.form.email')}
           htmlFor="guest_email"
           error={errors.guest_email?.message}
         >
@@ -234,7 +235,7 @@ const ReservationForm: React.FC = () => {
             id="guest_email"
             type="email"
             autoComplete="email"
-            placeholder="siz@example.com"
+            placeholder={t('reservation.form.emailPlaceholder')}
             aria-invalid={Boolean(errors.guest_email)}
             className={inputClass}
             {...register('guest_email')}
@@ -242,7 +243,7 @@ const ReservationForm: React.FC = () => {
         </Field>
 
         <Field
-          label="Mehmonlar soni"
+          label={t('reservation.form.partySize')}
           htmlFor="party_size"
           error={errors.party_size?.message}
         >
@@ -255,7 +256,10 @@ const ReservationForm: React.FC = () => {
             {Array.from({ length: MAX_PARTY_SIZE }, (_, index) => index + 1).map(
               (size) => (
                 <option key={size} value={size} className="bg-[#121212]">
-                  {size} kishi
+                  {t('reservation.form.partyOption').replace(
+                    '{size}',
+                    String(size),
+                  )}
                 </option>
               ),
             )}
@@ -263,7 +267,7 @@ const ReservationForm: React.FC = () => {
         </Field>
 
         <Field
-          label="Sana"
+          label={t('reservation.form.date')}
           htmlFor="reservation_date"
           error={errors.reservation_date?.message}
         >
@@ -279,7 +283,7 @@ const ReservationForm: React.FC = () => {
       </div>
 
       <fieldset>
-        <legend className={labelClass}>Vaqt</legend>
+        <legend className={labelClass}>{t('reservation.form.time')}</legend>
         <div className="grid grid-cols-3 gap-2 sm:grid-cols-5 lg:grid-cols-7">
           {RESERVATION_TIME_SLOTS.map((slot) => {
             const past = Boolean(date) && isSlotInPast(date, slot);
@@ -308,7 +312,7 @@ const ReservationForm: React.FC = () => {
       </fieldset>
 
       <div>
-        <p className={labelClass}>Stolni tanlang</p>
+        <p className={labelClass}>{t('reservation.form.selectTable')}</p>
         <FloorMap
           date={date || null}
           time={time || null}
@@ -318,17 +322,16 @@ const ReservationForm: React.FC = () => {
 
         {selectedTable && (
           <p className="mt-4 text-sm text-white/70">
-            Tanlangan stol:{' '}
-            <span className="text-[#E8C96A]">
-              №{selectedTable.table_number}
-            </span>{' '}
-            ({selectedTable.capacity} kishilik)
+            {t('reservation.form.selectedTable')
+              .replace('{number}', String(selectedTable.table_number))
+              .replace('{capacity}', String(selectedTable.capacity))}
           </p>
         )}
         {tooSmall && selectedTable && (
           <p className="mt-1.5 text-xs text-yellow-400">
-            Bu stol {selectedTable.capacity} kishigacha mo&apos;ljallangan, siz{' '}
-            {partySize} kishi tanladingiz.
+            {t('reservation.form.tooSmall')
+              .replace('{capacity}', String(selectedTable.capacity))
+              .replace('{partySize}', String(partySize))}
           </p>
         )}
         {errors.table_id && (

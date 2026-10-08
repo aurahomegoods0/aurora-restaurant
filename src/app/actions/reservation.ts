@@ -4,6 +4,7 @@ import { headers } from 'next/headers';
 import { after } from 'next/server';
 import { checkRateLimit } from '@/lib/rate-limit';
 import { createServerSupabaseClient } from '@/lib/supabase/server';
+import { sendGuestEmail } from '@/lib/guest-email';
 import { sendTelegramAdminNotification } from '@/lib/telegram';
 import {
   reservationSchema,
@@ -213,14 +214,27 @@ export async function createReservation(
     // The booking is already saved, so a Telegram outage must never fail it.
     // Running after the response also keeps the guest's confirmation instant.
     after(async () => {
-      const result = await sendTelegramAdminNotification(saved).catch(
+      const telegram = await sendTelegramAdminNotification(saved).catch(
         (error: unknown) => ({
           ok: false as const,
           error: error instanceof Error ? error.name : 'unknown error',
         }),
       );
-      if (!result.ok) {
-        console.error('[createReservation] Telegram notification failed', result.error);
+      if (!telegram.ok) {
+        console.error(
+          '[createReservation] Telegram notification failed',
+          telegram.error,
+        );
+      }
+
+      const email = await sendGuestEmail(saved, 'received').catch(
+        (error: unknown) => ({
+          ok: false as const,
+          error: error instanceof Error ? error.name : 'unknown error',
+        }),
+      );
+      if (!email.ok) {
+        console.error('[createReservation] guest email failed', email.error);
       }
     });
 

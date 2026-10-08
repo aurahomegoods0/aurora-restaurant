@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 import {
@@ -13,6 +14,7 @@ import {
 
 const CookieBanner: React.FC = () => {
   const { t } = useLanguage();
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -31,6 +33,8 @@ const CookieBanner: React.FC = () => {
     setCookieConsent(value);
     setOpen(false);
   };
+
+  if (pathname.startsWith('/admin')) return null;
 
   return (
     <AnimatePresence>

@@ -7,7 +7,7 @@ import { useLanguage } from '@/context/LanguageContext';
 const SECTIONS = ['s1', 's2', 's3', 's4', 's5'] as const;
 
 interface LegalDocumentProps {
-  kind: 'privacy' | 'cookies';
+  kind: 'privacy' | 'cookies' | 'terms';
 }
 
 const LegalDocument: React.FC<LegalDocumentProps> = ({ kind }) => {

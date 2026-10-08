@@ -152,7 +152,60 @@
     "title": "Kechangizni saqlang",
     "subtitle": "Sanani tanlang. Stolni belgilang. Joylar cheklangan.",
     "submit": "Stolni tasdiqlash",
-    "submitting": "Yuborilmoqda..."
+    "submitting": "Yuborilmoqda...",
+    "form": {
+      "name": "Ism",
+      "namePlaceholder": "Ism familiya",
+      "phone": "Telefon",
+      "phonePlaceholder": "+998 90 123 45 67",
+      "email": "Email",
+      "emailPlaceholder": "siz@example.com",
+      "partySize": "Mehmonlar soni",
+      "partyOption": "{size} kishi",
+      "date": "Sana",
+      "time": "Vaqt",
+      "selectTable": "Stolni tanlang",
+      "selectedTable": "Tanlangan stol: №{number} ({capacity} kishilik)",
+      "tooSmall": "Bu stol {capacity} kishigacha mo'ljallangan, siz {partySize} kishi tanladingiz.",
+      "tableTooSmall": "Bu stol {capacity} kishigacha mo'ljallangan",
+      "serverDown": "Server bilan bog'lanib bo'lmadi. Internetni tekshirib, qayta urinib ko'ring."
+    },
+    "floor": {
+      "free": "Bo'sh",
+      "taken": "Band",
+      "selected": "Tanlangan",
+      "live": "Jonli",
+      "offline": "Aloqa uzildi",
+      "connecting": "Ulanmoqda",
+      "pickSlot": "Stollar bandligini ko'rish uchun avval sana va vaqtni tanlang.",
+      "loading": "Yuklanmoqda...",
+      "emptyZone": "Stollar yo'q",
+      "takenNotice": "Siz tanlagan stol shu vaqtga band qilindi. Iltimos, boshqa stolni tanlang.",
+      "tableTooltip": "Stol №{number} · {capacity} kishilik",
+      "tableAria": "Stol {number}, {capacity} kishilik",
+      "zone": {
+        "window": "Oyna yonida",
+        "vip": "VIP",
+        "hall": "Asosiy zal"
+      },
+      "hint": {
+        "window": "Shahar manzarasi",
+        "vip": "Alohida xona",
+        "hall": "Markaziy zal"
+      }
+    },
+    "voucher": {
+      "code": "Bron raqami",
+      "guest": "Mehmon",
+      "date": "Sana",
+      "time": "Vaqt",
+      "table": "Stol",
+      "party": "Mehmonlar",
+      "partyValue": "{size} kishi",
+      "pdf": "PDF vaucherni yuklab olish",
+      "pdfError": "PDF yaratib bo'lmadi. Iltimos, qayta urinib ko'ring.",
+      "new": "Yangi bron"
+    }
   },
   "reviews": {
     "eyebrow": "Mehmonlar",
@@ -175,6 +228,7 @@
     "legal": "Huquqiy",
     "privacy": "Maxfiylik siyosati",
     "cookies": "Cookie va GDPR",
+    "terms": "Foydalanish shartlari",
     "cookieSettings": "Cookie sozlamalari",
     "rights": "Barcha huquqlar himoyalangan."
   },
@@ -211,10 +265,60 @@
     "s2Title": "Nima uchun ishlatamiz",
     "s2Body": "Stol band qilish, tasdiqlash, siz bilan bog‘lanish va qonuniy majburiyatlarni bajarish. Marketing xatlarini ruxsatsiz yubormaymiz.",
     "s3Title": "Kimga uzatiladi",
-    "s3Body": "Ma’lumotlar restoranning bron tizimi (Supabase) va, tasdiqlash uchun, restoran administratorining Telegram kanaliga yuboriladi. Sotilmaydi.",
+    "s3Body": "Ma’lumot bron tizimida (Supabase) saqlanadi. Oshxona Telegramda ogohlantiriladi, kiritilgan emailga tasdiq xati ketishi mumkin. Sotilmaydi.",
     "s4Title": "Qancha saqlanadi",
     "s4Body": "Bron yozuvlari xizmat ko‘rsatish va hisobot uchun saqlanadi, keyin o‘chiriladi yoki anonimlashtiriladi. Cookie roziligi qurilmangizda saqlanadi.",
     "s5Title": "Huquqlar va murojaat",
     "s5Body": "Ma’lumotlaringizni ko‘rish, tuzatish yoki o‘chirishni xohlasangiz, info@aurora.uz yoki +998 71 200 00 00 orqali yozing. Javob odatda 14 kun ichida."
+  },
+  "terms": {
+    "pageTitle": "Foydalanish shartlari",
+    "updated": "Yangilangan: 7-oktabr 2026",
+    "intro": "Ushbu qoidalar AURORA restorani saytidan foydalanganda va stol bron qilganda amal qiladi. Zalda kechki xizmat ham shu kechaning tartibiga bo‘ysunadi.",
+    "s1Title": "Bron",
+    "s1Body": "Saytdagi so‘rov — stol so‘rash; uy tasdiqlamaguncha kafolat emas. O‘z vaqtida keling. Kela olmasangiz, joyni boshqa mehmonga berish uchun imkon qadar erta bekor qiling.",
+    "s2Title": "Kechki tartib",
+    "s2Body": "Kiyim — rasmiy-ishonchli. Oxirgi mehmon saytdagi soatga qarab qabul qilinadi. Oshxona zal, mehmonlar soni yoki kechki daftarga mos kelmagan so‘rovni rad etishi mumkin.",
+    "s3Title": "Saytdan foydalanish",
+    "s3Body": "Bron formasini suiiste’mol qilmang, saytni skanerlamang yoki xizmatni buzmang. Menyu, narx va ish vaqti o‘zgarishi mumkin. Rasmlar tasviriy.",
+    "s4Title": "Mas’uliyat",
+    "s4Body": "AURORA kechikish, to‘liq band kechalar yoki uchinchi tomon xizmatlari (xarita, email, to‘lov) uchun javobgar emas. Bu matn O‘zbekiston iste’molchi huquqlarini cheklamaydi.",
+    "s5Title": "Aloqa",
+    "s5Body": "Shartlar bo‘yicha savol: info@aurora.uz yoki +998 71 200 00 00. Amaldagi qonun — O‘zbekiston Respublikasi qonunchiligi."
+  },
+  "kitchen": {
+    "eyebrow": "Xizmat",
+    "title": "Oshxona stoli",
+    "gateBody": "Kechki daftar. Parol uyda qoladi.",
+    "unconfigured": "Bu stolni ochish uchun serverda ADMIN_PASSWORD qo‘ying.",
+    "password": "Parol",
+    "signIn": "Kirish",
+    "signingIn": "Ochilmoqda…",
+    "signOut": "Stoldan chiqish",
+    "deskBody": "Stolni tasdiqlang, mehmonni o‘tqazing yoki bo‘shating. Holat o‘zgagach mehmonga xat ketadi.",
+    "filters": "Bron filtrlari",
+    "empty": "Bu ko‘rinishda bron yo‘q.",
+    "guests": "mehmon",
+    "confirm": "Tasdiqlash",
+    "cancel": "Bekor qilish",
+    "complete": "O‘tirdi",
+    "filter": {
+      "tonight": "Bugun",
+      "pending": "Kutilmoqda",
+      "confirmed": "Tasdiqlangan",
+      "cancelled": "Bekor",
+      "all": "Hammasi"
+    },
+    "status": {
+      "pending": "Kutilmoqda",
+      "confirmed": "Tasdiqlangan",
+      "cancelled": "Bekor",
+      "completed": "O‘tirdi"
+    },
+    "toast": {
+      "confirm": "Mehmonga xat ketdi. Stol saqlandi.",
+      "cancel": "Bron bo‘shatildi.",
+      "complete": "Mehmon o‘tirdi deb belgilandi."
+    }
   }
 }

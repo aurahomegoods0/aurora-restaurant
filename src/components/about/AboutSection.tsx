@@ -13,8 +13,9 @@ import {
 import GalleryLightbox from './GalleryLightbox';
 
 const spanClass = {
-  wide: 'sm:col-span-2',
-  tall: 'sm:row-span-2',
+  featured: 'col-span-2 row-span-2',
+  wide: 'col-span-2',
+  tall: 'row-span-2',
   normal: '',
 } as const;
 
@@ -181,24 +182,24 @@ const AboutSection: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
+          <div className="grid grid-cols-2 auto-rows-[9.5rem] gap-2 sm:grid-cols-4 sm:auto-rows-[11.5rem] sm:gap-3 lg:auto-rows-[13.5rem]">
             {galleryImages.map((item, index) => (
               <button
                 key={item.id}
                 type="button"
                 onClick={() => setLightbox(index)}
                 aria-label={`${t('about.openImage')}: ${item.alt[language]}`}
-                className={`group relative min-h-11 overflow-hidden rounded-sm border border-[#D4AF37]/15 bg-[#121212] transition-[border-color,box-shadow] duration-500 hover:border-[#D4AF37]/50 hover:shadow-[0_20px_50px_-24px_rgba(212,175,55,0.55)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D4AF37] ${spanClass[item.span]} ${
-                  item.span === 'tall'
-                    ? 'min-h-[280px] sm:min-h-[360px]'
-                    : 'aspect-[4/3] sm:aspect-auto sm:min-h-[180px]'
-                }`}
+                className={`group relative min-h-11 h-full w-full overflow-hidden rounded-sm border border-[#D4AF37]/15 bg-[#121212] transition-[border-color,box-shadow] duration-500 hover:border-[#D4AF37]/50 hover:shadow-[0_20px_50px_-24px_rgba(212,175,55,0.55)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D4AF37] ${spanClass[item.span]}`}
               >
                 <Image
                   src={item.src}
                   alt={item.alt[language]}
                   fill
-                  sizes="(max-width: 640px) 50vw, 25vw"
+                  sizes={
+                    item.span === 'featured' || item.span === 'wide'
+                      ? '(max-width: 640px) 100vw, 50vw'
+                      : '(max-width: 640px) 50vw, 25vw'
+                  }
                   quality={65}
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />

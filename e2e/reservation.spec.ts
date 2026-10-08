@@ -14,7 +14,9 @@ test.describe('AURORA site', () => {
 
     const sitemap = await request.get('/sitemap.xml');
     expect(sitemap.ok()).toBeTruthy();
-    expect(await sitemap.text()).toContain('privacy');
+    const sitemapText = await sitemap.text();
+    expect(sitemapText).toContain('privacy');
+    expect(sitemapText).toContain('terms');
 
     const robots = await request.get('/robots.txt');
     expect(robots.ok()).toBeTruthy();
@@ -25,6 +27,8 @@ test.describe('AURORA site', () => {
     await page.goto('/privacy');
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
     await page.goto('/cookies');
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    await page.goto('/terms');
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
   });
 

@@ -10,13 +10,13 @@ export const chefName = 'Kamran Alimov';
 export const galleryImages: {
   id: string;
   src: string;
-  span: 'wide' | 'tall' | 'normal';
+  span: 'featured' | 'wide' | 'tall' | 'normal';
   alt: Localized;
 }[] = [
   {
     id: 'hall',
     src: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=70',
-    span: 'wide',
+    span: 'featured',
     alt: {
       uz: 'AURORA asosiy zali — qorong‘u yog‘och va oltin chiroqlar',
       en: 'AURORA main hall — dark wood and gold lighting',
@@ -56,7 +56,7 @@ export const galleryImages: {
   {
     id: 'window',
     src: 'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=800&q=70',
-    span: 'normal',
+    span: 'wide',
     alt: {
       uz: 'Oyna yonidagi stol — kechki Toshkent manzarasi',
       en: 'A window table overlooking evening Tashkent',

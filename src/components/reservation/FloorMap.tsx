@@ -9,12 +9,9 @@ import type {
   RestaurantTable,
   TableZone,
 } from '@/types/reservation';
+import { useLanguage } from '@/context/LanguageContext';
 
-const ZONES: { key: TableZone; label: string; hint: string }[] = [
-  { key: 'window', label: 'Oyna yonida', hint: 'Shahar manzarasi' },
-  { key: 'vip', label: 'VIP', hint: 'Alohida xona' },
-  { key: 'hall', label: 'Asosiy zal', hint: 'Markaziy zal' },
-];
+const ZONES: TableZone[] = ['window', 'vip', 'hall'];
 
 const SLOT_COLUMNS: (keyof ReservationSlot)[] = [
   'id',
@@ -51,6 +48,7 @@ const FloorMap: React.FC<FloorMapProps> = ({
   selectedTableId,
   onSelect,
 }) => {
+  const { t } = useLanguage();
   const [tables, setTables] = useState<RestaurantTable[]>([]);
   const [tablesLoading, setTablesLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -190,12 +188,10 @@ const FloorMap: React.FC<FloorMapProps> = ({
 
   useEffect(() => {
     if (selectedTableId && occupiedTableIds.has(selectedTableId)) {
-      setNotice(
-        "Siz tanlagan stol shu vaqtga band qilindi. Iltimos, boshqa stolni tanlang.",
-      );
+      setNotice(t('reservation.floor.takenNotice'));
       onSelect(null);
     }
-  }, [occupiedTableIds, selectedTableId, onSelect]);
+  }, [occupiedTableIds, selectedTableId, onSelect, t]);
 
   const ready = Boolean(date && time);
 
@@ -210,15 +206,15 @@ const FloorMap: React.FC<FloorMapProps> = ({
         <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[11px] uppercase tracking-[0.15em] text-white/60">
           <li className="flex items-center gap-2">
             <span className="h-3.5 w-3.5 rounded-full border border-emerald-400 bg-emerald-500/30" />
-            Bo&apos;sh
+            {t('reservation.floor.free')}
           </li>
           <li className="flex items-center gap-2">
             <span className="h-3.5 w-3.5 rounded-full border border-red-500 bg-red-500/30" />
-            Band
+            {t('reservation.floor.taken')}
           </li>
           <li className="flex items-center gap-2">
             <span className="h-3.5 w-3.5 rounded-full border border-emerald-400 bg-emerald-500/30 ring-2 ring-blue-500 ring-offset-2 ring-offset-[#0A0A0A]" />
-            Tanlangan
+            {t('reservation.floor.selected')}
           </li>
         </ul>
 
@@ -237,17 +233,17 @@ const FloorMap: React.FC<FloorMapProps> = ({
               }`}
             />
             {realtimeState === 'live'
-              ? 'Jonli'
+              ? t('reservation.floor.live')
               : realtimeState === 'offline'
-                ? 'Aloqa uzildi'
-                : 'Ulanmoqda'}
+                ? t('reservation.floor.offline')
+                : t('reservation.floor.connecting')}
           </span>
         )}
       </div>
 
       {!ready && (
         <p className="rounded-sm border border-[#D4AF37]/20 bg-[#D4AF37]/5 px-4 py-3 text-sm text-[#E8D48B]">
-          Stollar bandligini ko&apos;rish uchun avval sana va vaqtni tanlang.
+          {t('reservation.floor.pickSlot')}
         </p>
       )}
 
@@ -268,31 +264,32 @@ const FloorMap: React.FC<FloorMapProps> = ({
 
       {tablesLoading ? (
         <p className="py-10 text-center text-sm uppercase tracking-widest text-white/40">
-          Yuklanmoqda...
+          {t('reservation.floor.loading')}
         </p>
       ) : (
         <div className="grid gap-4 lg:grid-cols-3">
           {ZONES.map((zone) => {
-            const zoneTables = tables.filter((table) => table.zone === zone.key);
+            const zoneTables = tables.filter((table) => table.zone === zone);
+            const zoneLabel = t(`reservation.floor.zone.${zone}`);
 
             return (
               <section
-                key={zone.key}
-                aria-label={zone.label}
+                key={zone}
+                aria-label={zoneLabel}
                 className="rounded-sm border border-white/10 bg-[#121212] p-4 pt-5"
               >
                 <header className="mb-5 flex items-baseline justify-between">
                   <h3 className="text-xs font-medium uppercase tracking-[0.25em] text-[#D4AF37]">
-                    {zone.label}
+                    {zoneLabel}
                   </h3>
                   <span className="text-[10px] uppercase tracking-[0.15em] text-white/35">
-                    {zone.hint}
+                    {t(`reservation.floor.hint.${zone}`)}
                   </span>
                 </header>
 
                 {zoneTables.length === 0 ? (
                   <p className="py-6 text-center text-xs text-white/35">
-                    Stollar yo&apos;q
+                    {t('reservation.floor.emptyZone')}
                   </p>
                 ) : (
                   <ul className="flex flex-wrap justify-center gap-x-5 gap-y-7 pb-2 pt-4">
@@ -302,8 +299,11 @@ const FloorMap: React.FC<FloorMapProps> = ({
                       const stateLabel = !ready
                         ? ''
                         : occupied
-                          ? 'Band'
-                          : "Bo'sh";
+                          ? t('reservation.floor.taken')
+                          : t('reservation.floor.free');
+                      const tableLabel = t('reservation.floor.tableAria')
+                        .replace('{number}', String(table.table_number))
+                        .replace('{capacity}', String(table.capacity));
 
                       return (
                         <li key={table.id} className="group relative">
@@ -312,7 +312,11 @@ const FloorMap: React.FC<FloorMapProps> = ({
                             disabled={!ready || occupied}
                             aria-pressed={selected}
                             data-testid={`table-${table.table_number}`}
-                            aria-label={`Stol ${table.table_number}, ${table.capacity} kishilik${stateLabel ? `, ${stateLabel}` : ''}`}
+                            aria-label={
+                              stateLabel
+                                ? `${tableLabel}, ${stateLabel}`
+                                : tableLabel
+                            }
                             onClick={() => handleSelect(table)}
                             className={`peer relative flex flex-col items-center justify-center border-2 text-sm font-semibold transition-all duration-300 focus-visible:outline-none ${tableShape(table.capacity)} ${
                               occupied
@@ -335,7 +339,12 @@ const FloorMap: React.FC<FloorMapProps> = ({
                             role="tooltip"
                             className="pointer-events-none absolute -top-11 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-sm border border-white/15 bg-black px-3 py-1.5 text-[11px] font-normal text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100 peer-focus-visible:opacity-100"
                           >
-                            Stol №{table.table_number} · {table.capacity} kishilik
+                            {t('reservation.floor.tableTooltip')
+                              .replace(
+                                '{number}',
+                                String(table.table_number),
+                              )
+                              .replace('{capacity}', String(table.capacity))}
                             {stateLabel && ` · ${stateLabel}`}
                           </span>
                         </li>

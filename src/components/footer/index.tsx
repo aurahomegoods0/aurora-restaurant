@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Clock, Mail, MapPin, Phone } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { restaurantConfig } from '../../../restaurant.config';
@@ -15,7 +16,10 @@ const ContactMap = dynamic(() => import('./ContactMap'), {
 
 const Footer: React.FC = () => {
   const { t } = useLanguage();
+  const pathname = usePathname();
   const year = new Date().getFullYear();
+
+  if (pathname.startsWith('/admin')) return null;
 
   return (
     <footer
@@ -99,6 +103,12 @@ const Footer: React.FC = () => {
           >
             {t('footer.cookies')}
           </Link>
+          <Link
+            href="/terms"
+            className="inline-flex min-h-11 items-center hover:text-[#E8C96A]"
+          >
+            {t('footer.terms')}
+          </Link>
           <button
             type="button"
             onClick={() => clearCookieConsent()}
@@ -136,7 +146,10 @@ const Footer: React.FC = () => {
         </div>
       </div>
 
-      <p className="mx-auto mt-8 max-w-7xl text-center text-[11px] tracking-[0.1em] text-[#6B6558] sm:text-left">
+      <p
+        suppressHydrationWarning
+        className="mx-auto mt-8 max-w-7xl text-center text-[11px] tracking-[0.1em] text-[#6B6558] sm:text-left"
+      >
         © {year} {restaurantConfig.name}. {t('footer.rights')}
       </p>
     </footer>

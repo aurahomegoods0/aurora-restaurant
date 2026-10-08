@@ -6,8 +6,10 @@ import {
   Playfair_Display,
 } from 'next/font/google';
 import React from 'react';
+import { cookies } from 'next/headers';
 import { restaurantConfig } from '../../restaurant.config';
 import { LanguageProvider } from '../context/LanguageContext';
+import { defaultLanguage, LANG_COOKIE, parseLanguage } from '@/lib/language';
 import Navbar from '../components/hero/Navbar';
 import Footer from '../components/footer';
 import ScrollProgress from '../components/ui/ScrollProgress';
@@ -109,15 +111,19 @@ interface RootLayoutProps {
   children: React.ReactNode;
 }
 
-const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
+export default async function RootLayout({ children }: RootLayoutProps) {
+  const language =
+    parseLanguage((await cookies()).get(LANG_COOKIE)?.value) ??
+    defaultLanguage();
+
   return (
     <html
-      lang={restaurantConfig.defaultLanguage}
+      lang={language}
       className={`${playfair.variable} ${instrument.variable} ${cormorant.variable} overflow-x-hidden`}
     >
       <body className="min-h-screen overflow-x-hidden bg-[#070707] font-sans text-[#F4EDE0] antialiased">
         <RestaurantJsonLd />
-        <LanguageProvider>
+        <LanguageProvider initialLanguage={language}>
           <a
             href="#main-content"
             className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[80] focus:rounded-sm focus:bg-[#D4AF37] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[#0A0A0A]"
@@ -136,6 +142,4 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
       </body>
     </html>
   );
-};
-
-export default RootLayout;
+}
