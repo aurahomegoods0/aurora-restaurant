@@ -31,7 +31,10 @@
     #b8923a 100%
   );
   background-size: 220% 100%;
-  color: #e8c96a;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .gold-foil-animated {

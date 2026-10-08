@@ -43,7 +43,7 @@ export function Spine() {
               'linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(255,255,255,0.28) 36%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0.22) 64%, rgba(0,0,0,0.7) 100%)',
           }}
         />
-        <span className="gold-foil absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-serif text-[11px] font-semibold tracking-[0.45em] [writing-mode:vertical-rl]">
+        <span className="gold-foil absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-serif text-[11px] font-semibold tracking-[0.45em] [writing-mode:vertical-rl] [-webkit-background-clip:text] [background-clip:text] [-webkit-text-fill-color:transparent]">
           {restaurantConfig.name}
         </span>
       </div>

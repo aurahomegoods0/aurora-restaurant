@@ -73,7 +73,7 @@ export function CoverFront({ active }: { active: boolean }) {
           </div>
 
           <h3
-            className={`gold-foil relative text-[58px] font-semibold leading-none tracking-[0.2em] [text-indent:0.2em] drop-shadow-[0_2px_1px_rgba(0,0,0,0.75)] ${
+            className={`gold-foil relative text-[58px] font-semibold leading-none tracking-[0.2em] [text-indent:0.2em] drop-shadow-[0_2px_1px_rgba(0,0,0,0.75)] [-webkit-background-clip:text] [background-clip:text] [-webkit-text-fill-color:transparent] ${
               active ? 'gold-foil-animated' : ''
             }`}
           >
@@ -86,7 +86,7 @@ export function CoverFront({ active }: { active: boolean }) {
             <span className="h-px w-16 bg-gradient-to-l from-transparent to-[#d4af37]" />
           </div>
 
-          <p className="gold-foil text-[15px] font-semibold uppercase tracking-[0.42em] [text-indent:0.42em]">
+          <p className="gold-foil text-[15px] font-semibold uppercase tracking-[0.42em] [text-indent:0.42em] [-webkit-background-clip:text] [background-clip:text] [-webkit-text-fill-color:transparent]">
             {t('flipbook.cover.subtitle')}
           </p>
 
@@ -105,7 +105,7 @@ export function BackCoverArt() {
     <div className="absolute inset-0 flex select-none flex-col items-center justify-center gap-5 font-serif">
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(248deg,rgba(255,255,255,0.14)_0%,transparent_34%,transparent_60%,rgba(0,0,0,0.32)_100%)]" />
       <AuroraEmblem size={84} />
-      <p className="gold-foil text-[26px] font-semibold tracking-[0.3em] [text-indent:0.3em]">
+      <p className="gold-foil text-[26px] font-semibold tracking-[0.3em] [text-indent:0.3em] [-webkit-background-clip:text] [background-clip:text] [-webkit-text-fill-color:transparent]">
         {restaurantConfig.name}
       </p>
       <p className="text-[11.5px] uppercase tracking-[0.34em] text-[#e8cf7a]/85">
